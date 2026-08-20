@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Card from "../global-components/cardsLayout/Card";
+import { Smallcard } from "../global-components/cardsLayout/Smallcard";
 
 export default function Home() {
   return (
@@ -10,16 +11,17 @@ export default function Home() {
         <div className="">THE</div>
         <Card />
 
+        <Smallcard image="/globe.svg"
+          title="Phones" />
 
 
-
-            All below is a test
+        All below is a test
         <p className="font-title-small">dsfsdfsfsdfdsfsd</p>
         <p className="text-base text-dark-muted">therhehhehf</p>
         <h3>SADRTRTDRHTDRHTHY
           GTFTF</h3>
 
-          <button  className="
+        <button className="
                 /* Layout & Dimensions */
                 w-58.5 h-14 
                 flex items-center justify-center gap-2.5
@@ -34,8 +36,8 @@ export default function Home() {
                 /* Behavior */
                 transition-all duration-200 hover:opacity-90 active:scale-[0.98]
                 ">
-                <span>Button Text</span>
-            </button>
+          <span>Button Text</span>
+        </button>
 
 
         <button className="bg-primary hover:bg-primary-hover text-light rounded-2xl">fwefewfwefwef</button>

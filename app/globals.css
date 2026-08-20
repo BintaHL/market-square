@@ -19,6 +19,8 @@
   --color-success: #00ff66; /* (Green for checkouts, gains, or badges) */
   --color-success-hover: #a9ebbf; /* (Soft green hover) */
 
+  --color-grayish: #2F2E30;  /* rear background */
+
   /* Hardcoded 50% Opacity Black color utility */
   --color-dark-muted: rgba(0, 0, 0, 0.50);
 }

@@ -3,7 +3,7 @@ import React from 'react'
 
 const Card = () => {
   return (
-    <div className="w-67.5 h-80.5 flex flex-col gap-4 opacity-100 shadow-md shadow-green-950">
+    <div className="w-67.5 h-80.5 flex flex-col gap-4 opacity-100 shadow-md shadow-grayish">
       {/* Top Card */}
       <div className="relative w-67.5 h-55.5 bg-card-bg flex items-center justify-center">
 
@@ -13,6 +13,14 @@ const Card = () => {
           alt="Product"
           className="w-43 h-45 object-contain"
         />
+
+        {/* left Vertical Icons */}
+        <div className="absolute top-3 left-3 w-12.75 h-6.5 rounded-sm text-light bg-success flex items-center justify-center">
+          <p className="text-[12px] font-normal leading-4.5 uppercase">
+            new
+          </p>
+        </div>
+
 
         {/* Right Vertical Icons */}
         <div className="absolute top-3 right-3 w-8.5 h-19 flex flex-col gap-2">
