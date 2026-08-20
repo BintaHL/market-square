@@ -1,26 +1,97 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: var(--font-inter), sans-serif;
+  --font-heading: var(--font-playfair), serif;
+ 
+
+  /* essential colors */
+  --color-hero: #fafafa;  /* (Bright white text for dark banners) */
+  --color-dark: #000000; /* (Clean dark text) */
+  --color-light: #ffffff; /* (Pure white background)*/
+  
+  /* Red Action Variables */
+  --color-primary: #DB4444; /* (Your main marketplace red) */
+  --color-primary-hover: #E97591; /*  (Lighter red hover) */
+  
+  /* Green Action Variables */
+  --color-success: #00ff66; /* (Green for checkouts, gains, or badges) */
+  --color-success-hover: #a9ebbf; /* (Soft green hover) */
+
+  /* Hardcoded 50% Opacity Black color utility */
+  --color-dark-muted: rgba(0, 0, 0, 0.50);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html, body {
+    @apply font-sans bg-stone-50 text-slate-900 antialiased;
   }
+
+    h1 {
+    font-family: var(--font-inter), sans-serif; 
+    font-size: 48px;                             
+    font-weight: 600;                          
+    line-height: 60px;                            
+    letter-spacing: 0.04em;  
+    text-edge: normal;                              
+    @apply text-dark; 
+  }
+
+  /* 🚨 Hardcoded h2 rules */
+  h2 {
+    font-family: var(--font-inter), sans-serif; 
+    font-size: 36px;                             
+    font-weight: 600;                           
+    line-height: 48px;                            
+    letter-spacing: 0.04em;   
+      text-edge: normal;                          
+    @apply text-dark;
+  }
+
+  /* 🚨 Your exact custom hardcoded h3 rules */
+  h3 {
+    font-family: var(--font-inter), sans-serif; 
+    font-size: 24px;                            
+    font-weight: 700;                             
+    line-height: 24px;                            
+    letter-spacing: 0.03em;   
+      text-edge: normal;                        
+    @apply text-dark;
+  }
+ 
+  h4, h5, h6 {
+    @apply font-heading font-medium tracking-normal text-slate-950;
+  }
+
+  p {
+    @apply text-base  leading-relaxed;
+  }
+
+}
+/* app/globals.css */
+
+@utility font-title-medium {
+  font-family: var(--font-poppins), sans-serif; 
+  font-size: 20px;                               
+  font-weight: 600;                               
+  line-height: 28px;                            
+  letter-spacing: 0em;                          
+  leading-trim: none;
+  text-edge: normal;                           
+  @apply text-dark;                             
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* app/globals.css */
+
+@utility font-title-small {
+  font-family: var(--font-poppins), sans-serif; 
+  font-size: 16px;   
+  color: #DB4444;                     
+  font-weight: 600;                              
+  line-height: 20px;                            
+  letter-spacing: 0em;                      
+  leading-trim: none;
+  text-edge: normal;
+  @apply text-dark;                           
 }
