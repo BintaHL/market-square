@@ -3,7 +3,7 @@ import React from 'react'
 import { AddToCartButton } from "../buttonsLayout/Button";
 
 
-interface ProductCardProps {
+interface MainProductCardProps {
   image: string;
   name: string;
   price: string;
@@ -14,7 +14,7 @@ interface ProductCardProps {
   imageAlt?: string;
 }
 
-export function ProductCard({
+export function MainProductCard({
   image,
   name,
   price,
@@ -23,7 +23,7 @@ export function ProductCard({
   badge = "NEW",
   badgeColor = "bg-success",
   imageAlt = "Product",
-}: ProductCardProps) {
+}: MainProductCardProps) {
   return (
     <div className="w-67.5 h-80.5 flex flex-col gap-4 opacity-100  shadow-sm shadow-grayish">
       {/* Top Card */}
@@ -65,7 +65,7 @@ export function ProductCard({
         </div>
 
         <div className="absolute bottom-0 left-0 w-full opacity-0 translate-y-full transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-          <AddToCartButton href="/about" className="bg-red-900!">Add to Cart</AddToCartButton>
+          <AddToCartButton href="/about">Add to Cart</AddToCartButton>
         </div>
       </div>
 
@@ -77,12 +77,12 @@ export function ProductCard({
         </h3>
 
         {/* Price + Rating */}
-        <div className="flex items-center gap-2">
           <span className="text-base font-semibold">
             {price}
           </span>
 
           {/* Stars */}
+        <div className="flex items-center gap-2">
           <div className="flex text-[#FFAD33]">
             {Array.from({ length: 5 }).map((_, index) => (
               <Star
