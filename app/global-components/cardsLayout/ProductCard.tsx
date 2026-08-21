@@ -1,5 +1,7 @@
 import { EyeIcon, HeartIcon, RatIcon, Star, StarHalf } from "lucide-react"
 import React from 'react'
+import { AddToCartButton } from "../buttonsLayout/Button";
+
 
 interface ProductCardProps {
   image: string;
@@ -25,13 +27,13 @@ export function ProductCard({
   return (
     <div className="w-67.5 h-80.5 flex flex-col gap-4 opacity-100  shadow-sm shadow-grayish">
       {/* Top Card */}
-      <div className="relative w-67.5 h-55.5 bg-card-bg flex items-center justify-center">
+      <div className="group relative w-67.5 h-55.5 bg-card-bg flex flex-col items-center justify-center gap-10">
 
         {/* Product Image */}
         <img
           src={image}
           alt={imageAlt}
-          className="w-43 h-45 object-contain"
+          className="w-43 h-45 object-contain my-8"
         />
 
         {/* Badge */}
@@ -60,6 +62,10 @@ export function ProductCard({
           >
             <EyeIcon className="w-5 h-5" />
           </button>
+        </div>
+
+        <div className="absolute bottom-0 left-0 w-full opacity-0 translate-y-full transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+          <AddToCartButton href="/about">Add to Cart</AddToCartButton>
         </div>
       </div>
 

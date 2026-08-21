@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Smallcard } from "../global-components/cardsLayout/Smallcard";
 import { ProductCard } from "../global-components/cardsLayout/ProductCard";
-import Button from "@/app/global-components/buttonsLayout/Button";
+import {Button} from "@/app/global-components/buttonsLayout/Button";
 
 export default function Home() {
   return (
@@ -24,6 +24,7 @@ export default function Home() {
             image="/next.svg"
             name="Laptop"
             price="₦450,000"
+            badge="-30%"
             badgeColor="bg-primary"
             reviews={32}
           />
@@ -49,7 +50,7 @@ export default function Home() {
 
         <div className="flex items-center justify-between">
 
-        <Button href="/">Back to home</Button>
+        <Button href="/home">Back to home</Button>
 
 
         <Smallcard image="/globe.svg"

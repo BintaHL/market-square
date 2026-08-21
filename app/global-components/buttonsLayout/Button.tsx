@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { ShoppingCart } from "lucide-react";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -10,7 +11,7 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-export default function Button({
+export function Button({
   children,
   href,
   onClick,
@@ -36,7 +37,7 @@ export default function Button({
       onClick={handleClick}
       disabled={disabled}
       className={`
-        w-[234px] h-[56px]
+        w-58.5 h-14
         flex items-center justify-center gap-2.5
         px-12 py-4
         rounded-sm
@@ -48,6 +49,57 @@ export default function Button({
         ${className}
       `}
     >
+      {children}
+    </button>
+  );
+}
+
+interface AddToCartButtonProps {
+  children?: React.ReactNode;
+  href?: string;
+  onClick?: () => void;
+  className?: string;
+}
+
+export function AddToCartButton({
+  children = "Add to Cart",
+  href,
+  onClick,
+  className = "",
+}: AddToCartButtonProps) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+      return;
+    }
+
+    if (href) {
+      router.push(href);
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="
+        w-full
+        h-10
+        flex items-center justify-center gap-2
+        px-4
+        bg-dark
+        text-light
+        text-sm
+        font-medium
+        rounded-none
+        transition-all duration-200
+        hover:opacity-90
+        active:scale-[0.98]
+      "
+    >
+      <ShoppingCart className="w-4 h-4" />
       {children}
     </button>
   );
@@ -68,3 +120,17 @@ export default function Button({
   <ShoppingCart className="w-5 h-5" />
   <span>View Cart</span>
 </Button> */}
+
+// FOR ADDCART BUTTON
+
+{/* <AddToCartButton href="/cart">
+  Add to Cart
+</AddToCartButton> */}
+
+{/* <AddToCartButton href={`/cart/${product.id}`}>
+  Add to Cart
+</AddToCartButton> */}
+
+{/* <AddToCartButton onClick={() => addToCart(product)}>
+  Add to Cart
+</AddToCartButton> */}
