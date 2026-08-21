@@ -1,6 +1,7 @@
 import Image from "next/image";
-import Card from "../global-components/cardsLayout/Card";
 import { Smallcard } from "../global-components/cardsLayout/Smallcard";
+import { ProductCard } from "../global-components/cardsLayout/ProductCard";
+import Button from "@/app/global-components/buttonsLayout/Button";
 
 export default function Home() {
   return (
@@ -9,10 +10,53 @@ export default function Home() {
       {/* clean this div line 8-16*/}
       <div className="Testing mt-50">
         <div className="">THE</div>
-        <Card />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-10">
+
+          <ProductCard
+            image="/globe.svg"
+            name="Product Name"
+            price="₦25,000"
+            reviews={55}
+          />
+
+          <ProductCard
+            image="/next.svg"
+            name="Laptop"
+            price="₦450,000"
+            badgeColor="bg-primary"
+            reviews={32}
+          />
+
+          <ProductCard
+            image="/vercel.svg"
+            name="Smartphone"
+            price="₦280,000"
+            reviews={87}
+            badge="SALE"
+            rating={4}
+          />
+
+          <ProductCard
+            image="/window.svg"
+            name="Smartphone"
+            price="₦280,000"
+            reviews={87}
+            badge="SALE"
+            rating={4}
+          />
+        </div>
+
+        <div className="flex items-center justify-between">
+
+        <Button href="/">Back to home</Button>
+
 
         <Smallcard image="/globe.svg"
           title="Phones" />
+
+        </div>
+
 
 
         All below is a test
@@ -21,23 +65,7 @@ export default function Home() {
         <h3>SADRTRTDRHTDRHTHY
           GTFTF</h3>
 
-        <button className="
-                /* Layout & Dimensions */
-                w-58.5 h-14 
-                flex items-center justify-center gap-2.5
-                pt-4 pr-12 pb-4 pl-12
-                
-                /* Borders & Opacity */
-                rounded-sm opacity-100 rotate-0
-                
-                /* Team Customization Targets (Change These) */
-                bg-primary text-light font-medium
-                
-                /* Behavior */
-                transition-all duration-200 hover:opacity-90 active:scale-[0.98]
-                ">
-          <span>Button Text</span>
-        </button>
+      
 
 
         <button className="bg-primary hover:bg-primary-hover text-light rounded-2xl">fwefewfwefwef</button>
