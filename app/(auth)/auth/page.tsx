@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Image from "next/image";
 
 export default function Home() {
@@ -67,3 +68,14 @@ export default function Home() {
     </div>
   );
 }
+=======
+import React from 'react'
+
+const page = () => {
+  return (
+    <div>page</div>
+  )
+}
+
+export default page
+>>>>>>> baebac0b2c167aad6aceeaa3bb2523c939ff2b1c
