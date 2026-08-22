@@ -33,9 +33,9 @@ const Navbar = () => {
                         </div>
                         <div className=''>
                             <Link href="/" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>Home</Link>
-                            <Link href="/" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>Contact</Link>
+                            <Link href="/contact" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>Contact</Link>
                             <Link href="/about" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>About</Link>
-                            <Link href="/" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>Sign Up</Link>
+                            <Link href="/signup" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>Sign Up</Link>
                         </div>
                         <div className='flex gap-4'>
                             <div className="relative flex items-center">
