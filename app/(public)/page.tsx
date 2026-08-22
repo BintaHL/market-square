@@ -5,14 +5,12 @@ import Footer from "../(public)/components/Footer"
 import BeforeFooter from "../(public)/components/BeforeFooter"
 import Hero from "../(public)/components/Hero"
 import Products from './components/Products'
-// import Products from '../(public)/products/page'
 
 const Home = () => {
   return (
     <div>
       <Navbar />
       <Hero />
-      {/* <Products /> */}
       <Products />
       <BeforeFooter BeforeFooterData={BeforeFooterData}/>
       <Footer />
