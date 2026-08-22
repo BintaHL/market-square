@@ -1,5 +1,5 @@
 import React from 'react'
-import Category from '../products/category/category'
+import Category from '../category/category'
 
 const SideNav = () => {
   return (

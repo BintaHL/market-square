@@ -5,6 +5,7 @@ import {
   StarHalf,
 } from "lucide-react";
 import { AddToCartButton } from "../buttonsLayout/Button";
+import Image from "next/image";
 
 interface ProductCardProps {
   image: string;
@@ -34,7 +35,7 @@ export function ProductCard({
       <div className="group relative w-full aspect-[1/0.82] bg-card-bg flex flex-col items-center justify-center overflow-hidden">
 
         {/* Product Image */}
-        <img
+        <Image
           src={image}
           alt={imageAlt}
           className="w-[65%] h-[75%] object-contain"

@@ -12,7 +12,7 @@ const Footer = () => {
         <div className='h-80 mt-20 bg-[#000000]'>
             <div className='container mx-auto flex justify-center gap-15 pt-12'>
                 <div className='text-[#fafafa]'>
-                    <h3>Market-square</h3>
+                    <h3 className='text-white'>CARTS</h3>
                     <p className='pt-3 text-sm'>Subscribe</p>
                     <p className='pt-3 text-xs'>Get 10% off your first order</p>
                     <div className="relative flex items-center pt-3">
