@@ -39,6 +39,8 @@ export function ProductCard({
           src={image}
           alt={imageAlt}
           className="w-[65%] h-[75%] object-contain"
+          width={100}
+          height={50}
         />
 
         {/* Badge */}
