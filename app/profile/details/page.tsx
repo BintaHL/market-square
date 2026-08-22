@@ -38,10 +38,8 @@ const ProfileAccount = () => {
         <div className="w-full">
             <div className="max-w-[80%] mx-auto">
 
-                {/* =====================================
-                    MOBILE ACCOUNT MENU
-                    Shows ABOVE the form
-                ===================================== */}
+                {/*  MOBILE ACCOUNT MENU
+                    Shows ABOVE the form */}
                 <div className="lg:hidden w-full mb-8">
 
                     <button
