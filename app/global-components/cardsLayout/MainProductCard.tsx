@@ -1,7 +1,10 @@
-import { EyeIcon, HeartIcon, RatIcon, Star, StarHalf } from "lucide-react"
-import React from 'react'
+import {
+  EyeIcon,
+  HeartIcon,
+  Star,
+  StarHalf,
+} from "lucide-react";
 import { AddToCartButton } from "../buttonsLayout/Button";
-
 
 interface MainProductCardProps {
   image: string;
@@ -25,20 +28,23 @@ export function MainProductCard({
   imageAlt = "Product",
 }: MainProductCardProps) {
   return (
-    <div className="w-67.5 h-80.5 flex flex-col gap-4 opacity-100  shadow-sm shadow-grayish">
+    <div className="w-full min-w-0 flex flex-col gap-4 shadow-sm shadow-grayish">
+
       {/* Top Card */}
-      <div className="group relative w-67.5 h-55.5 bg-card-bg flex flex-col items-center justify-center gap-10">
+      <div className="group relative w-full aspect-[1/0.82] bg-card-bg flex flex-col items-center justify-center overflow-hidden">
 
         {/* Product Image */}
         <img
           src={image}
           alt={imageAlt}
-          className="w-43 h-45 object-contain my-8"
+          className="w-[50%] h-[75%] object-contain"
         />
 
         {/* Badge */}
         {badge && (
-          <div className={`absolute top-3 left-3 w-12.75 h-6.5 rounded-sm ${badgeColor} text-light flex items-center justify-center`}>
+          <div
+            className={`absolute top-3 left-3 w-12.75 h-6.5 rounded-sm ${badgeColor} text-light flex items-center justify-center`}
+          >
             <p className="text-[12px] font-normal leading-4.5 uppercase">
               {badge}
             </p>
@@ -46,7 +52,7 @@ export function MainProductCard({
         )}
 
         {/* Action Icons */}
-        <div className="absolute top-3 right-3 w-8.5 h-19 flex flex-col gap-2">
+        <div className="absolute top-3 right-3 flex flex-col gap-2">
           <button
             type="button"
             aria-label="Add to wishlist"
@@ -64,36 +70,65 @@ export function MainProductCard({
           </button>
         </div>
 
+        {/* Add To Cart */}
         <div className="absolute bottom-0 left-0 w-full opacity-0 translate-y-full transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-          <AddToCartButton href="/about">Add to Cart</AddToCartButton>
+          <AddToCartButton href="/about">
+            Add to Cart
+          </AddToCartButton>
         </div>
       </div>
 
       {/* Bottom Card Content */}
-      <div className="w-55.25 h-21 flex flex-col gap-2 pl-2">
+      <div className="w-full min-w-0 flex flex-col gap-2 px-2">
+
         {/* Product Name */}
-        <h3 className="text-base font-medium leading-5">
+        <h3 className="text-base font-medium leading-5 truncate">
           {name}
         </h3>
 
-        {/* Price + Rating */}
-          <span className="text-base font-semibold">
-            {price}
-          </span>
+        {/* Price */}
+        <span className="text-base font-semibold">
+          {price}
+        </span>
 
-          {/* Stars */}
+        {/* Rating */}
         <div className="flex items-center gap-2">
           <div className="flex text-[#FFAD33]">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <Star
-                key={index}
-                className="w-4 h-4"
-                fill={index < rating ? "currentColor" : "none"}
-              />
-            ))}
+            {Array.from({ length: 5 }).map((_, index) => {
+              const starNumber = index + 1;
+
+              if (rating >= starNumber) {
+                // Full star
+                return (
+                  <Star
+                    key={index}
+                    className="w-4 h-4"
+                    fill="currentColor"
+                  />
+                );
+              }
+
+              if (rating >= starNumber - 0.5) {
+                // Half star
+                return (
+                  <StarHalf
+                    key={index}
+                    className="w-4 h-4"
+                    fill="currentColor"
+                  />
+                );
+              }
+
+              // Empty star
+              return (
+                <Star
+                  key={index}
+                  className="w-4 h-4"
+                />
+              );
+            })}
           </div>
 
-          {/* Reviews */}
           <p className="text-sm text-[#7B7B7B] leading-5">
             ({reviews})
           </p>
@@ -107,25 +142,60 @@ export function MainProductCard({
 
 // USAGE OF THE ABOVE IN OTHER PAGES
 
-{/* <ProductCard
-  image="/globe.svg"
+{/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+   
+  <MainProductCard image="/globe.svg"
   name="Product Name"
   price="₦25,000"
   reviews={55}
 />
 
-<ProductCard
-  image="/laptop.svg"
+<MainProductCard
+  image="/images/google.svg"
   name="Laptop"
   price="₦450,000"
   reviews={32}
 />
 
-<ProductCard
-  image="/phone.svg"
+<MainProductCard
+  image="/images/auth2.png"
   name="Smartphone"
   price="₦280,000"
   reviews={87}
   badge="SALE"
   rating={4}
-/> */}
+/> 
+<MainProductCard
+  image="/images/icon-secure.svg"
+  name="Smartphone"
+  price="₦280,000"
+  reviews={87}
+  badge="SALE"
+  rating={4}
+/> 
+</div> */}
+
+
+// Mapping
+{/* <div className="w-[80%] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+  {products.map((product) => (
+    <ProductCard
+      key={product.id}
+      {...product}
+    />
+  ))}
+</div> */}
+
+
+// IN the mapping above either USE
+//  {...products} 
+// 
+            // OR
+            
+// <ProductCard
+//   image={product.image}
+//   name={product.name}
+//   price={product.price}
+//   reviews={product.reviews}
+//   rating={product.rating}
+// />

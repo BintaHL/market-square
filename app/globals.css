@@ -63,7 +63,7 @@
     @apply text-dark;
   }
  
-  h4, h5, h6 {
+  h4, h5 {
     @apply font-heading font-medium tracking-normal text-slate-950;
   }
 
