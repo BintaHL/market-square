@@ -1,17 +1,21 @@
 import { EyeIcon, HeartIcon, RatIcon, Star, StarHalf } from "lucide-react"
 import React from 'react'
 import { AddToCartButton } from "../buttonsLayout/Button";
+import Image from "next/image";
 
 
 interface ProductCardProps {
   image: string;
   name: string;
   price: string;
-  reviews: number;
-  rating?: number;
+  reviews?: number;
   badge?: string;
   badgeColor?: string;
   imageAlt?: string;
+  rating?: {
+    rate:number;
+    count:number;
+  }
 }
 
 export function ProductCard({
@@ -19,7 +23,7 @@ export function ProductCard({
   name,
   price,
   reviews,
-  rating = 5,
+  rating,
   badge = "NEW",
   badgeColor = "bg-success",
   imageAlt = "Product",
@@ -30,9 +34,11 @@ export function ProductCard({
       <div className="group relative w-67.5 h-55.5 bg-card-bg flex flex-col items-center justify-center gap-10">
 
         {/* Product Image */}
-        <img
+        <Image
           src={image}
           alt={imageAlt}
+          width={300}
+          height={300}
           className="w-43 h-45 object-contain my-8"
         />
 

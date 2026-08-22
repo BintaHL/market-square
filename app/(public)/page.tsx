@@ -1,9 +1,21 @@
-import About from "./about/page"
+import React from 'react'
+import { BeforeFooterData } from '@/data'
+import Navbar from "../(public)/components/Navbar"
+import Footer from "../(public)/components/Footer"
+import BeforeFooter from "../(public)/components/BeforeFooter"
+import Hero from "../(public)/components/Hero"
+import Products from './components/Products'
+// import Products from '../(public)/products/page'
 
 const Home = () => {
   return (
-    <div className="flex items-center justify-center">
-          <About />
+    <div>
+      <Navbar />
+      <Hero />
+      {/* <Products /> */}
+      <Products />
+      <BeforeFooter BeforeFooterData={BeforeFooterData}/>
+      <Footer />
     </div>
   )
 }

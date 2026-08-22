@@ -29,7 +29,7 @@ const Navbar = () => {
                     <div className='container mx-auto'>
                         <div className='h-[60px] flex pt-12 justify-between'>
                         <div className='font-bold'>
-                            <h3>Market-Square</h3>
+                            <h3>CARTS</h3>
                         </div>
                         <div className=''>
                             <Link href="/" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>Home</Link>

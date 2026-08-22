@@ -23,7 +23,7 @@ const BeforeFooter = ({BeforeFooterData = []}:BeforeFooterProps) => {
                         <div className='w-20 h-20 rounded-full bg-[#c0c0c0] flex justify-center items-center mx-auto mb-5'>
                             <Image src={item.image} alt={item.title} width={50} height={50} className='rounded-full bg-black p-2 justify-center items-center'/>
                         </div>
-                        <h3 className='text-black mt-2 flex justify-center items-center font-bold'>{item.title}</h3>
+                        <p className='text-black mt-2 flex justify-center items-center font-bold'>{item.title}</p>
                         <p className='text-sm text-black flex justify-center items-center'>{item.description}</p>
                     </div>
                 )

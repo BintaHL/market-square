@@ -1,17 +1,20 @@
-import React from 'react'
+// import React from 'react'
 
-const Home = () => {
-  return (
-    <div className="">
-        <div className="max-w-[80%] mx-auto">
-            <div className="">
+// import { BeforeFooterData } from '@/data'
+// import Navbar from "../components/Navbar"
+// import Footer from "../components/Footer"
+// import BeforeFooter from "../components/BeforeFooter"
+// import Hero from "../components/Hero"
 
-                content here
+// const Home = () => {
+//   return (
+//     <div>
+//       <Navbar />
+//       <Hero />
+//       <BeforeFooter BeforeFooterData={BeforeFooterData}/>
+//       <Footer />
+//     </div>
+//   )
+// }
 
-            </div>
-        </div>
-    </div>
-  )
-}
-
-export default Home
+// export default Home
