@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import Link from 'next/link';
-import Image from 'next/image';
+// import Link from 'next/link';
+// import Image from 'next/image';
 import { ProductCard } from '@/app/global-components/cardsLayout/ProductCard';
-import { Button, button } from '@/app/global-components/buttonsLayout/Button';
+import { Button } from '@/app/global-components/buttonsLayout/Button';
 // import ProductCardProps from '../../global-components/cardsLayout/ProductCard'
 
 export interface Product {
@@ -38,8 +38,7 @@ async function Products() {
     <div className='container mx-auto mt-20'>
         <div className='flex flex-wrap gap-4'>
             {products?.map((product) => (
-            <ProductCard 
-                id={product.id} 
+            <ProductCard  
                 key={product.id} 
                 image={product.image} 
                 name={product.name} 

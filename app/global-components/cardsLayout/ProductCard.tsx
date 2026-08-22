@@ -94,7 +94,7 @@ export function ProductCard({
               <Star
                 key={index}
                 className="w-4 h-4"
-                fill={index < rating ? "currentColor" : "none"}
+                fill={rating?.rate && index < Math.round(rating.rate) ? "currentColor" : "none"}
               />
             ))}
           </div>
