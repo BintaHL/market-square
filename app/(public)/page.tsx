@@ -4,7 +4,6 @@ import Navbar from "../(public)/components/Navbar"
 import Footer from "../(public)/components/Footer"
 import BeforeFooter from "../(public)/components/BeforeFooter"
 import Hero from "../(public)/components/Hero"
-// import Products from './components/Products'
 import Products from "./products/page"
 
 const Home = () => {

@@ -1,49 +1,42 @@
 import {
   EyeIcon,
   HeartIcon,
+  ShoppingCartIcon,
   Star,
   StarHalf,
 } from "lucide-react";
 import { AddToCartButton } from "../buttonsLayout/Button";
 import Image from "next/image";
+import { Product } from "../types/product";
+import Link from "next/link";
 
 interface ProductCardProps {
-  image: string;
-  name: string;
-  price: string;
-  reviews: number;
-  rating?: number;
-  badge?: string;
-  badgeColor?: string;
-  imageAlt?: string;
+  product: Product;
 }
 
-export function ProductCard({
-  image,
-  name,
-  price,
-  reviews,
-  rating = 5,
-  badge = "NEW",
-  badgeColor = "bg-success",
-  imageAlt = "Product",
-}: ProductCardProps) {
+export function ProductCard({ product }: ProductCardProps) {
+  const {
+    id,
+    image,
+    name,
+    price,
+    reviews,
+    rating = 5,
+    badge = "NEW",
+    badgeColor = "bg-success",
+    onAddToCart,
+  } = product;
+
   return (
     <div className="w-full min-w-0 flex flex-col gap-4 shadow-sm shadow-grayish">
-
-      {/* TOP CARD */}
       <div className="group relative w-full aspect-[1/0.82] bg-card-bg flex flex-col items-center justify-center overflow-hidden">
 
-        {/* Product Image */}
-        <Image
+        <img
           src={image}
-          alt={imageAlt}
-          className="w-[65%] h-[75%] object-contain"
-          width={100}
-          height={50}
+          alt={name}
+          className="w-[65%] h-[75%] object-contain transition-transform duration-300 group-hover:scale-105"
         />
 
-        {/* Badge */}
         {badge && (
           <div
             className={`absolute top-3 left-3 w-12.75 h-6.5 rounded-sm ${badgeColor} text-light flex items-center justify-center`}
@@ -54,10 +47,7 @@ export function ProductCard({
           </div>
         )}
 
-        {/* Action Icons */}
         <div className="absolute top-3 right-3 flex flex-col gap-2">
-
-          {/* Wishlist */}
           <button
             type="button"
             aria-label="Add to wishlist"
@@ -66,7 +56,6 @@ export function ProductCard({
             <HeartIcon className="w-5 h-5" />
           </button>
 
-          {/* View Product */}
           <button
             type="button"
             aria-label="View product"
@@ -74,48 +63,73 @@ export function ProductCard({
           >
             <EyeIcon className="w-5 h-5" />
           </button>
-
         </div>
 
-        {/* Add To Cart */}
-        <div className="absolute bottom-0 left-0 w-full opacity-0 translate-y-full transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-          <AddToCartButton
-            href="/about"
-            className="bg-red-900!"
+        {/* Hover Actions */}
+        <div
+          className="
+          absolute inset-0
+          flex flex-col items-center justify-center
+          gap-3
+          bg-black/10
+          opacity-0
+          transition-opacity duration-300
+          group-hover:opacity-100
+        "
+        >
+          {/* View Product */}
+          <Link
+          // href=""
+            href={`../products/${id}`}
+            aria-label={`View ${name}`}
+            className="
+            w-30 h-10
+            rounded-sm
+            bg-white
+            flex items-center justify-center
+            shadow-md
+            transition-transform duration-200
+            hover:scale-110
+          "
           >
-            Add to Cart
-          </AddToCartButton>
-        </div>
+            View
+          </Link>
 
+          {/* Add To Cart */}
+          <button
+            type="button"
+            // onClick={() => onAddToCart?.(id)}
+            aria-label={`Add ${name} to cart`}
+            className="
+            w-12 h-12
+            rounded-full
+            bg-red-900
+            text-white
+            flex items-center justify-center
+            shadow-md
+            transition-transform duration-200
+            hover:scale-110
+          "
+          >
+            <ShoppingCartIcon className="w-5 h-5" />
+          </button>
+        </div>
       </div>
 
-
-      {/* BOTTOM CARD CONTENT */}
       <div className="w-full min-w-0 flex flex-col gap-2 px-2">
-
-        {/* Product Name */}
         <h3 className="text-base font-medium leading-5 truncate">
           {name}
         </h3>
 
-
-        {/* Price */}
         <span className="text-base font-semibold">
-          {price}
+          ₦{price.toLocaleString()}
         </span>
 
-
-        {/*]  RATING + REVIEWS */}
         <div className="flex items-center gap-2">
-
-          {/* Stars */}
           <div className="flex text-[#FFAD33] shrink-0">
-
             {Array.from({ length: 5 }).map((_, index) => {
-
               const starNumber = index + 1;
 
-              // Full Star
               if (rating >= starNumber) {
                 return (
                   <Star
@@ -126,7 +140,6 @@ export function ProductCard({
                 );
               }
 
-              // Half Star
               if (rating >= starNumber - 0.5) {
                 return (
                   <StarHalf
@@ -137,30 +150,20 @@ export function ProductCard({
                 );
               }
 
-              // Empty Star
               return (
-                <Star
-                  key={index}
-                  className="w-4 h-4"
-                />
+                <Star key={index} className="w-4 h-4" />
               );
             })}
-
           </div>
 
-          {/* Reviews */}
           <p className="text-sm text-[#7B7B7B] leading-5">
             ({reviews})
           </p>
-
         </div>
-
       </div>
-
     </div>
   );
 }
-
 
 // ------------------------------------------
 // USAGE
