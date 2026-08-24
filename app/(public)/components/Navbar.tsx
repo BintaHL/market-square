@@ -26,8 +26,9 @@ const Navbar = () => {
                         </div>
                     </div>
                     {/* The second part of the nav */}
-                    <div className='container mx-auto'>
-                        <div className='h-[60px] flex pt-12 justify-between'>
+                    <div className=''>
+                        <div className='container mx-auto'>
+                        <div className='h-15 flex pt-12 justify-between'>
                         <div className='font-bold'>
                             <h3>CARTS</h3>
                         </div>
@@ -56,6 +57,7 @@ const Navbar = () => {
                             <Heart size={20}/>
                             <ShoppingCart size={20}/>
                         </div>
+                    </div>
                     </div>
                     </div>
                 </div>
