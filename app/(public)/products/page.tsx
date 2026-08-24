@@ -1,8 +1,8 @@
 "use client"
 import { useEffect, useState } from "react";
-import { ProductCard } from "@/app/global-components/cardsLayout/ProductCard"; 
-import { getProducts } from "@/app/services/productService"; 
-import type { Product } from "@/app/global-components/types/product"; 
+import { ProductCard } from "@/app/global-components/cardsLayout/ProductCard";
+import { getProducts } from "@/app/global-components/services/productService";
+import type { Product } from "@/app/global-components/types/product";
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -21,17 +21,20 @@ export default function ProductsPage() {
   return (
     <div className="my-30">
 
-    <div className="w-[80%] mx-auto">
+      <div className="w-[80%] mx-auto">
 
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {products.slice(0,8).map((product) => (
-        <ProductCard
-          key={product.id}
-          product={product}
-        />
-      ))}
-    </div>
-    </div>
+        
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {products.slice(0, 8).map((product) => (
+
+            <ProductCard
+              key={product.id}
+              product={product}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
@@ -81,13 +84,13 @@ export default function ProductsPage() {
 //         </div>
 //         <div className='flex flex-wrap gap-4'>
 //             {products?.map((product) => (
-//             <ProductCard 
-//                 key={product.id} 
-//                 image={product.image} 
-//                 name={product.name} 
+//             <ProductCard
+//                 key={product.id}
+//                 image={product.image}
+//                 name={product.name}
 //                 price={product.price}
-//                 reviews={product.reviews} 
-//                 rating={product.rating}  
+//                 reviews={product.reviews}
+//                 rating={product.rating}
 //                 imageAlt={product.name}/>
 //         ))}
 //         </div>

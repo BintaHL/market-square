@@ -1,12 +1,14 @@
 export interface Product {
-    id: string;
-    image: string;
-    name: string;
-    price: number;
+    product?: Product;
+
+    id?: string | number;
+    image?: string;
+    imageAlt?: string;
+    name?: string;
+    price?: number;
     reviews?: number;
     rating?: number;
     badge?: string;
     badgeColor?: string;
-
-    onAddToCart?: (productId: string) => void;
+    onAddToCart?: (id: string | number) => void;
 }

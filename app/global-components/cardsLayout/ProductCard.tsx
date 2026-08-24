@@ -4,9 +4,7 @@ import {
   ShoppingCartIcon,
   Star,
   StarHalf,
-} from "lucide-react";
-import { AddToCartButton } from "../buttonsLayout/Button";
-import Image from "next/image";
+} from "lucide-react"
 import { Product } from "../types/product";
 import Link from "next/link";
 
@@ -122,7 +120,7 @@ export function ProductCard({ product }: ProductCardProps) {
         </h3>
 
         <span className="text-base font-semibold">
-          ₦{price.toLocaleString()}
+          {/* ₦{price.toLocaleString()} */}
         </span>
 
         <div className="flex items-center gap-2">
