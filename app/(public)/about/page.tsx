@@ -12,6 +12,7 @@ const About = () => {
       <Navbar />
       <Hero />
       <BeforeFooter BeforeFooterData={BeforeFooterData}/>
+      
       <Footer />
     </div>
   )
