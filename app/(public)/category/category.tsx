@@ -40,7 +40,7 @@ export default async function Category(){
               return (
                   <li key={index} className='capitalize text-sm pb-6'>
                       {/* Link to a filtered collection page of separate categories */}
-                      <div className='flex bg-red-400'>
+                      <div className='flex'>
                         <Link 
                           href={`/dashboard/products?category=${categoryName}`} 
                           className='text-gray-800 hover:text-amber-800 rounded-2xl'>
