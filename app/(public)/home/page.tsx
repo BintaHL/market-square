@@ -1,17 +1,32 @@
+// import React from 'react'
+
+// import { BeforeFooterData } from '@/data'
+// import Navbar from "../components/Navbar"
+// import Footer from "../components/Footer"
+// import BeforeFooter from "../components/BeforeFooter"
+// import Hero from "../components/Hero"
+
+// const Home = () => {
+//   return (
+//     <div>
+//       <Navbar />
+//       <Hero />
+//       <BeforeFooter BeforeFooterData={BeforeFooterData}/>
+//       <Footer />
+//     </div>
+//   )
+// }
+
+// export default Home
+
 import React from 'react'
 
-const Home = () => {
+const HomePage = () => {
   return (
-    <div className="">
-        <div className="max-w-[80%] mx-auto">
-            <div className="">
-
-                content here
-
-            </div>
-        </div>
+    <div>
+      <p>The HomePage</p>
     </div>
   )
 }
 
-export default Home
+export default HomePage

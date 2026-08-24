@@ -3,7 +3,7 @@ import Image from "next/image"
 import React from 'react'
 
 
-const Signup = () => {
+const Signin = () => {
     return (
         <div className="relative">
             <div className="max-w-[80%] mx-auto">
@@ -13,23 +13,19 @@ const Signup = () => {
 
                     <form>
                         <fieldset className="flex flex-col items-start gap-6">
-                            <legend className="text-4xl font-medium leading-12 tracking-[0.04em]">Create an account
+                            <legend className="text-4xl font-medium leading-12 tracking-[0.04em]">Log in to Exclusive
                             </legend>
                             <p>Enter your details below</p>
-
-                            <input type="text" name="name" placeholder="Name" className="w-92.5 h-8 border-b border-gray-400 outline-none" required />
 
                             <input type="email" name="Email" placeholder="Email" className="w-92.5 h-8 border-b border-gray-400 outline-none" required />
 
                             <input type="password" name="Password" placeholder="Password" className="w-92.5 h-8 border-b border-gray-400 outline-none" required />
                             
-                            <Button href="" className="w-full">Create Account</Button>
+                            <div className="flex items-center gap-15 mt-4">
+                                <Button href="" className="w-40!">log In</Button>
 
-                            <Button href="" className="w-full bg-light! text-dark! flex items-center border border-dark-muted">
-                                <Image src="/images/google.svg" alt="" width={20} height={20} />
-                                Create Account
-                            </Button>
-                       
+                                <div className="text-primary text-end">Forgot Password?</div>
+                            </div>
                         </fieldset>
                     </form>
 
@@ -40,4 +36,4 @@ const Signup = () => {
     )
 }
 
-export default Signup
+export default Signin

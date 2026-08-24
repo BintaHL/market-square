@@ -5,6 +5,7 @@ import { Heart } from 'lucide-react';
 import { ShoppingCart } from 'lucide-react';
 import { Search } from 'lucide-react';
 
+
 const Navbar = () => {
   return (
     <div className=''>
@@ -26,16 +27,17 @@ const Navbar = () => {
                         </div>
                     </div>
                     {/* The second part of the nav */}
-                    <div className='container mx-auto'>
-                        <div className='h-[60px] flex pt-12 justify-between'>
+                    <div className=''>
+                        <div className='container mx-auto'>
+                        <div className='h-15 flex pt-12 justify-between'>
                         <div className='font-bold'>
-                            <h3>Market-Square</h3>
+                            <h3>CARTS</h3>
                         </div>
                         <div className=''>
                             <Link href="/" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>Home</Link>
-                            <Link href="/" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>Contact</Link>
+                            <Link href="/contact" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>Contact</Link>
                             <Link href="/about" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>About</Link>
-                            <Link href="/" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>Sign Up</Link>
+                            <Link href="/auth/signin" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>Sign Up</Link>
                         </div>
                         <div className='flex gap-4'>
                             <div className="relative flex items-center">
@@ -56,6 +58,7 @@ const Navbar = () => {
                             <Heart size={20}/>
                             <ShoppingCart size={20}/>
                         </div>
+                    </div>
                     </div>
                     </div>
                 </div>
