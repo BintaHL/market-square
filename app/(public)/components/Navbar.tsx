@@ -5,6 +5,7 @@ import { Heart } from 'lucide-react';
 import { ShoppingCart } from 'lucide-react';
 import { Search } from 'lucide-react';
 
+
 const Navbar = () => {
   return (
     <div className=''>
@@ -36,7 +37,7 @@ const Navbar = () => {
                             <Link href="/" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>Home</Link>
                             <Link href="/contact" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>Contact</Link>
                             <Link href="/about" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>About</Link>
-                            <Link href="/signup" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>Sign Up</Link>
+                            <Link href="/auth/signin" className='pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer'>Sign Up</Link>
                         </div>
                         <div className='flex gap-4'>
                             <div className="relative flex items-center">
