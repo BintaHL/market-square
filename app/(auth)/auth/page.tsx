@@ -5,6 +5,10 @@ const AuthHome = () => {
     <div>
       
       AuthHome
+      
+      <div className="">
+        Content here
+      </div>
         
     </div>
   )
