@@ -36,7 +36,7 @@ const Product = async () => {
     <div className="w-[80%] mx-auto  mt-10">
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
+        {products.slice(0,8).map((product) => (
           <div key={product.id} className="w-full min-w-0 flex flex-col gap-4 shadow- shadow-grayish border rounded-sm">
 
             {/* 1. START RELATIVE PREVIEW CONTAINER */}
