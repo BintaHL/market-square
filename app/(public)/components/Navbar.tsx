@@ -8,9 +8,9 @@ import { Search } from 'lucide-react';
 
 const Navbar = () => {
   return (
-    <div className=''>
+    <div className='z-100'>
         <div className='h-[120px] border-b-2 border-b-mist-400'>
-            <div className='fixed mx-auto h-[40px] bg-[#000000] w-full py-3 px-4 '>
+            <div className='fixed mx-auto h-[40px] bg-[#000000] w-full py-3 '>
                 <div className='max-w-7xl'>
                     {/* The black upper part of the nav */}
                     <div className='flex flex-1 text-center text-sm justify-center'>
@@ -27,7 +27,7 @@ const Navbar = () => {
                         </div>
                     </div>
                     {/* The second part of the nav */}
-                    <div className=''>
+                    <div className='pb-10 shadow-sm '>
                         <div className='container mx-auto'>
                         <div className='h-15 flex pt-12 justify-between'>
                         <div className='font-bold'>
