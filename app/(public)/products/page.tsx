@@ -1,116 +1,142 @@
-"use client"
-import { useEffect, useState } from "react";
-import { ProductCard } from "@/app/global-components/cardsLayout/ProductCard";
-import { getProducts } from "@/app/global-components/services/productService";
-import type { Product } from "@/app/global-components/types/product";
+import axios from "axios"
+import { EyeIcon, HeartIcon, ShoppingCartIcon } from "lucide-react";
+import Link from "next/link";
 
-export default function ProductsPage() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+interface FakeStoreProduct {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
+}
 
-  useEffect(() => {
-    getProducts()
-      .then(setProducts)
-      .finally(() => setLoading(false));
-  }, []);
+async function getProducts(): Promise<FakeStoreProduct[]> {
+  try {
+    const res = await axios.get("https://fakestoreapi.com/products");
+    const data = res.data; 
 
-  if (loading) {
-    return <p>Loading...</p>;
+    return data
+
+  } catch (error) {
+    console.error("Failed to Fetch Data", error);
+    return [];
   }
-
-  return (
-    <div className="my-30">
-
-      <div className="w-[80%] mx-auto">
-
-        
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.slice(0, 8).map((product) => (
-
-            <ProductCard
-              key={product.id}
-              product={product}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
 }
 
 
+const Product = async () => {
+  const products = await getProducts();
+
+  return (
+    <div className="w-[80%] mx-auto  mt-10">
+
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {products.map((product) => (
+          <div key={product.id} className="w-full min-w-0 flex flex-col gap-4 shadow- shadow-grayish border rounded-sm">
+
+            {/* 1. START RELATIVE PREVIEW CONTAINER */}
+            <div className="group relative w-full aspect-[1/0.82] bg-card-bg flex flex-col items-center justify-center overflow-hidden">
+
+              {/* Product Image */}
+              <img
+                src={product.image}
+                alt={product.title}
+                className="w-[65%] h-[75%] object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+
+              {/* Absolute Actions Panel (Now safely nested inside the relative container) */}
+              <div className="absolute top-3 right-3 flex flex-col gap-2 z-10">
+                <button
+                  type="button"
+                  aria-label="Add to wishlist"
+                  className="w-8.5 h-8.5 flex items-center justify-center bg-light rounded-full shadow-sm"
+                >
+                  <HeartIcon className="w-5 h-5" />
+                </button>
+
+                <button
+                  type="button"
+                  aria-label="View product"
+                  className="w-8.5 h-8.5 flex items-center justify-center bg-light rounded-full shadow-sm"
+                >
+                  <EyeIcon className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Hover Actions Panel Overlay (Now safely nested inside the relative container) */}
+              <div
+                className="
+            absolute inset-0
+            flex flex-col items-center justify-center
+            gap-3
+            bg-black/10
+            opacity-0
+            transition-opacity duration-300
+            group-hover:opacity-100
+          "
+              >
+                {/* View Product */}
+                <Link
+                  href={`/products/${product.id}`}
+                  aria-label="View product details"
+                  className="
+              w-30 h-10
+              rounded-sm
+              bg-white
+              flex items-center justify-center
+              shadow-md
+              transition-transform duration-200
+              hover:scale-110
+            "
+                >
+                  View
+                </Link>
+
+                {/* Add To Cart */}
+                <button
+                  type="button"
+                  aria-label="Add to cart"
+                  className="
+              w-12 h-12
+              rounded-full
+              bg-red-900
+              text-white
+              flex items-center justify-center
+              shadow-md
+              transition-transform duration-200
+              hover:scale-110
+            "
+                >
+                  <ShoppingCartIcon className="w-5 h-5" />
+                </button>
+              </div>
+
+            </div>
+            {/* 2. END RELATIVE PREVIEW CONTAINER (Moved down past hover layers) */}
 
 
+            {/* Product Metadata Information */}
+            <div className="px-2 flex flex-col gap-1">
+              <h3 className="font-medium text-base truncate">{product.title}</h3>
+              <span className="text-base font-semibold text-red-600">₦{product.price.toLocaleString()}</span>
+            </div>
 
-// import React from 'react';
-// import axios from 'axios';
-// import { ProductCard } from '@/app/global-components/cardsLayout/ProductCard';
-// import Navbar from '../components/Navbar';
-// import Footer from '../components/Footer';
-// // import ProductCardProps from '../../global-components/cardsLayout/ProductCard'
+            <div className="flex items-center justify-between px-2 pb-3">
+              <span className="text-sm text-orange-300 font-semibold">★ {product.rating.rate}</span>
+              <span className="text-dark-muted text-sm leading-5">({product.rating.count})</span>
+            </div>
 
-// export interface Product {
-//     id:number;
-//   image?: string;
-//   name: string;
-//   price: string;
-//   reviews?: string;
-//   badge?: string;
-//   badgeColor?: string;
-//   imageAlt?: string;
-//   rating?: number;
-// }
+          </div>
+        ))}
+      </div>
 
-// async function ProductItems(): Promise<Product[]> {
-//   try {
-//     const response = await axios.get<Product[]>('https://fakestoreapi.com/products');
-//     return response.data;
-//   } catch (error) {
-//     console.error('Failed to fetch store products:', error);
-//     return [];
-//   }
-// }
+    </div>
+  )
+}
 
-// async function Products() {
-//   const products = await ProductItems();
-
-//   return (
-//     <div className=''>
-//         <Navbar />
-//         <div className='container mx-auto mt-20'>
-//             <div className='text-center mb-10'>
-//             <h1>All Products</h1>
-//         </div>
-//         <div className='flex flex-wrap gap-4'>
-//             {products?.map((product) => (
-//             <ProductCard
-//                 key={product.id}
-//                 image={product.image}
-//                 name={product.name}
-//                 price={product.price}
-//                 reviews={product.reviews}
-//                 rating={product.rating}
-//                 imageAlt={product.name}/>
-//         ))}
-//         </div>
-//         </div>
-//         <Footer />
-//     </div>
-//   );
-// }
-
-// export default Products;
-
-
-// // import React from 'react'
-
-// // const Products = () => {
-// //   return (
-// //     <div>
-// //       <p>products</p>
-// //     </div>
-// //   )
-// // }
-
-// // export default Products
+export default Product

@@ -40,7 +40,7 @@ export function Button({
         w-58.5 h-14
         flex items-center justify-center gap-2.5
         px-12 py-4
-        rounded-sm
+        rounded-sm 
         bg-primary text-light font-medium
         transition-all duration-200
         hover:opacity-90
@@ -89,7 +89,7 @@ export function AddToCartButton({
         h-10
         flex items-center justify-center gap-2
         px-4
-        bg-dark
+        bg-primary
         text-light
         text-sm
         font-medium
