@@ -4,30 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme {
-  --font-sans: var(--font-inter), sans-serif;
-  --font-heading: var(--font-playfair), serif;
-
-  /* essential colors */
-  --color-hero: #fafafa;  /* (Bright white text for dark banners) */
-  --color-dark: #000000; /* (Clean dark text) */
-  --color-light: #ffffff; /* (Pure white background)*/
-  --color-card-bg:#f5f5f5; /* (Pure background for card)*/
-
-  /* Red Action Variables */
-  --color-primary: #DB4444; /* (Your main marketplace red) */
-  --color-primary-hover: #E97591; /*  (Lighter red hover) */
-
-  /* Green Action Variables */
-  --color-success: #00ff66; /* (Green for checkouts, gains, or badges) */
-  --color-success-hover: #a9ebbf; /* (Soft green hover) */
-
-  --color-grayish: #2F2E30;  /* rear background */
-
-  /* Hardcoded 50% Opacity Black color utility */
-  --color-dark-muted: rgba(0, 0, 0, 0.50);
-}
-
 @layer base {
   html, body {
     @apply font-sans bg-stone-50 text-slate-900 antialiased;
@@ -220,4 +196,28 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+@theme {
+  --font-sans: var(--font-inter), sans-serif;
+  --font-heading: var(--font-playfair), serif;
+
+  /* essential colors */
+  --color-hero: #fafafa;  /* (Bright white text for dark banners) */
+  --color-dark: #000000; /* (Clean dark text) */
+  --color-light: #ffffff; /* (Pure white background)*/
+  --color-card-bg:#f5f5f5; /* (Pure background for card)*/
+
+  /* Red Action Variables */
+  --color-primary: #DB4444; /* (Your main marketplace red) */
+  --color-primary-hover: #E97591; /*  (Lighter red hover) */
+
+  /* Green Action Variables */
+  --color-success: #00ff66; /* (Green for checkouts, gains, or badges) */
+  --color-success-hover: #a9ebbf; /* (Soft green hover) */
+
+  --color-grayish: #2F2E30;  /* rear background */
+
+  /* Hardcoded 50% Opacity Black color utility */
+  --color-dark-muted: rgba(0, 0, 0, 0.50);
 }
