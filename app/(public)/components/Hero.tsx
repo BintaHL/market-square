@@ -6,8 +6,8 @@ import { RiAppleLine } from "react-icons/ri";
 const Hero = () => {
   return (
     <div className='min-h-80 w-full mt-35'>
-        <div className='container flex justify-between gap-20 mx-auto'>
-            <div className='w-full flex justify-between'>
+        <div className='container flex justify-between mx-auto'>
+            <div className='w-full flex justify-between gap-10'>
                 <div className=''>
                     <SideNav />
                 </div>
@@ -23,7 +23,7 @@ const Hero = () => {
                                     <h1>Up to 10% <br /> off Voucher</h1>
                                 </div>
                                 <div className=''>
-                                    <Image src='/images/hero_endframe_large 2.png' alt='Hero Image' width={400} height={400}/>
+                                    <Image src='/images/hero_endframe_large 2.png' alt='Hero Image' width={400} height={400} className='w-auto h-auto'/>
                                 </div>
                             </div>
                         </div>

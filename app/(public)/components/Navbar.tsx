@@ -11,17 +11,19 @@ const Navbar = () => {
         <div className='z-100 h-[140px] shadow-md'>
             {/* First part of the nav */}
             <div className='w-full h-[40px] bg-[#000000] py-3'>
-                <div className='flex max-w-7xl mx-auto px-4 text-center text-sm justify-center'>
-                    <div className=''>
-                        <p className='text-white inline-flex items-center justify-center text-xs '>
-                            Shopping made esiar Suits And Free ! 
-                            <span className='ml-2 inline-flex items-center underline font-semibold cursor-pointer'>ShopNow</span>
-                        </p>
-                    </div>
-                    <div className='ml-40 text-sm'>
-                        <p className='text-white flex items-center gap-2'>English 
-                            <span className='inline-flex items-center text-xs'><ChevronDown className='text-white' size={15}/></span>
-                        </p>
+                <div className=''>
+                    <div className='flex max-w-7xl px-4 text-center text-sm justify-end'>
+                        <div className='pr-29'>
+                            <p className='text-white inline-flex items-center justify-center text-xs '>
+                                Summer Sale For All Swim And Free Express Delivery - OFF 50%
+                                <span className='ml-2 inline-flex items-center underline font-semibold cursor-pointer'>ShopNow</span>
+                            </p>
+                        </div>
+                        <div className='ml-40 text-sm pr-20'>
+                            <p className='text-white flex items-center gap-2'>English 
+                                <span className='inline-flex items-center text-xs'><ChevronDown className='text-white' size={15}/></span>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
