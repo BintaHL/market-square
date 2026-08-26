@@ -31,24 +31,32 @@ export default function CustomCardCarousel() {
 
   // Fetch data using Axios
   useEffect(() => {
-    const fetchCarouselData = async () => {
-      try {
-        setIsLoading(true);
-        const res = await axios.get<ApiCard[]>("https://fakestoreapi.com/products");
-        const data = res.data;
-        console.log(data);
-        setCards(data);
-      } catch (err: any[]) {
-        const errorMessage =
-          err.response?.data?.message || err.message || "An error occurred fetching data.";
-        setError(errorMessage);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+   const fetchCarouselData = async () => {
+  try {
+    setIsLoading(true);
+    const res = await axios.get<ApiCard[]>("https://fakestoreapi.com/products");
+    const data = res.data;
+    console.log(data);
+    setCards(data);
+  } catch (err: unknown) {
+    let errorMessage = "An error occurred fetching data.";
 
-    fetchCarouselData();
-  }, []);
+    if (axios.isAxiosError(err)) {
+      errorMessage = err.response?.data?.message || err.message;
+    } 
+    
+    else if (err instanceof Error) {
+      errorMessage = err.message;
+    }
+
+    setError(errorMessage);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
+fetchCarouselData();
+}, []);
 
   // 2. NAVIGATIONAL HANDLERS: Simply increment/decrement index positions forward/backward
   const prevSlide = () => {
