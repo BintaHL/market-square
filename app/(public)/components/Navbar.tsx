@@ -7,7 +7,7 @@ import { Search } from 'lucide-react';
 
 const Navbar = () => {
   return (
-    <div className='fixed w-full left-0 top-0 z-50'>
+    <div className='fixed w-full left-0 top-0'>
         <div className='z-100 h-[140px] shadow-md'>
             {/* First part of the nav */}
             <div className='w-full h-[40px] bg-[#000000] py-3'>

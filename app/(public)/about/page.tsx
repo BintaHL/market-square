@@ -5,12 +5,9 @@ import AboutHero from "../components/AboutHero"
 
 const About = () => {
   return (
-    <div>
-      
+    <div className='mt-30'>  
       <AboutHero />
-      <BeforeFooter BeforeFooterData={BeforeFooterData}/>
-      
-      
+      <BeforeFooter BeforeFooterData={BeforeFooterData}/>  
     </div>
   )
 }
