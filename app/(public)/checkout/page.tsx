@@ -114,7 +114,7 @@ const Checkout = ({ items = [] }: OrderSummaryProps) => {
                     <input
                       type="text"
                       name="address"
-                      className="bg-card-bg text-sm w-full min-w-0 h-11 outline-dark-muted px-3"
+                      className="bg-carsd-bg text-sm w-full min-w-0 h-11 outline-dark-muted px-3"
                     />
                   </div>
 
