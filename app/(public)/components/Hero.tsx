@@ -5,14 +5,14 @@ import { RiAppleLine } from "react-icons/ri";
 
 const Hero = () => {
   return (
-    <div className='min-h-80 w-full mt-35'>
+    <div className='min-h-80 w-full mt-120 md:mt-35'>
         <div className='container flex justify-between mx-auto'>
-            <div className='w-full flex justify-between gap-10'>
-                <div className=''>
+            <div className='w-full flex flex-col md:flex-row justify-between gap-10'>
+                <div className='hidden md:block'>
                     <SideNav />
                 </div>
                 <div className='mt-10'>
-                    <main className='flex-1 flex h-[350px] items-center justify-center'>
+                    <main className='flex-1 h-[350px] items-center justify-center'>
                         <div className='bg-black text-white py-10 px-10 max-w-5xl w-full mx-auto'>
                             <div className='flex'>
                                 <div className=''>

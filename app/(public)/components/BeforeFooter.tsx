@@ -16,7 +16,7 @@ interface BeforeFooterProps{
 const BeforeFooter = ({BeforeFooterData = []}:BeforeFooterProps) => {
   return (
     <div className='container mx-auto mt-20'>
-        <div className='flex justify-center items-center gap-10'>
+        <div className='flex flex-col md:flex-row justify-center items-center gap-10'>
             {BeforeFooterData?.map((item, index ) =>{
                 return (
                     <div key={index} className='flex-col justify-center items-center'>

@@ -9,9 +9,9 @@ import Image from 'next/image';
 const Footer = () => {
   return (
     <div>
-        <div className='h-80 mt-20 bg-[#000000]'>
-            <div className='container mx-auto flex justify-center gap-15 pt-12 shadow-lg'>
-                <div className='text-[#fafafa]'>
+        <div className='h-125 md:h-80 mt-20 bg-[#000000]'>
+            <div className='container flex flex-wrap mx-auto justify-center gap-10 pt-12 shadow-lg'>
+                <div className='text-[#fafafa] w-60'>
                     <h6 className='text-white'>CARTS</h6>
                     <p className='pt-3 text-sm'>Subscribe</p>
                     <p className='pt-3 text-xs'>Get 10% off your first order</p>
@@ -20,7 +20,7 @@ const Footer = () => {
                         <input
                         type="text"
                         placeholder="Enter your email?"
-                        className="w-full pl-4 pr-15 py-2 bg-black border-1 border-white rounded-md text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400 transition-all"
+                        className="w-full pl-4 pr-15 py-2 bg-black border-2 border-white rounded-md text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400 transition-all"
                         />
                         {/* search icon */}
                         <div className="absolute right-3 flex items-center pointer-events-none">
@@ -70,7 +70,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex justify-center items-center h-10 border-t-2 border-t-mist-600 mt-8 text-gray-500'>
+            <div className='flex justify-center items-center h-10 border-t-2 border-t-mist-600 mt-8 text-gray-500 bg-black'>
                 <p className='text-xs font-light py-2'>&copy; Copyright icbm-project {new Date().getFullYear()}. All right reserved</p>
             </div>
         </div>     
