@@ -4,7 +4,7 @@ import React from "react";
 
 const Contact = () => {
     return (
-        <div className="w-full">
+        <div className="w-full mt-20">
             <div className="max-w-[80%] mx-auto">
 
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 items-start">
@@ -72,7 +72,7 @@ const Contact = () => {
                     <div className="order-2 lg:order-1 flex flex-col gap-5 sticky top-30 w-full min-w-0">
 
                         {/* Breadcrumb */}
-                        <div className="flex items-start justify-start text-sm gap-2 mb-5">
+                        <div className="flex items-start justify-start text-sm gap-2 mb-5 mt-20">
 
                             <h6 className="text-dark-muted">
                                 Home
