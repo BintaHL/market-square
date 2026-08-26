@@ -1,4 +1,4 @@
-import { Button } from "@/app/global-components/buttonsLayout/Button"
+import { AddToCartButton, Button } from "@/app/global-components/buttonsLayout/Button"
 import Image from "next/image"
 import React from 'react'
 
@@ -23,7 +23,8 @@ const Signup = () => {
 
                             <input type="password" name="Password" placeholder="Password" className="w-92.5 h-8 border-b border-gray-400 outline-none" required />
                             
-                            <Button href="" className="w-full">Create Account</Button>
+                            <Button href="" className="bg-primary w-full">Create Account</Button>
+                            
 
                             <Button href="" className="w-full bg-light! text-dark! flex items-center border border-dark-muted">
                                 <Image src="/images/google.svg" alt="" width={20} height={20} />
