@@ -1,5 +1,6 @@
 import axios from "axios"
 import { EyeIcon, HeartIcon, ShoppingCartIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 interface FakeStoreProduct {
@@ -43,9 +44,11 @@ const Product = async () => {
             <div className="group relative w-full aspect-[1/0.82] bg-card-bg flex flex-col items-center justify-center overflow-hidden">
 
               {/* Product Image */}
-              <img
+              <Image
                 src={product.image}
                 alt={product.title}
+                width={1000}
+                height={50}
                 className="w-[65%] h-[75%] object-contain transition-transform duration-300 group-hover:scale-105"
               />
 
