@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/app/global-components/buttonsLayout/Button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -33,6 +34,7 @@ const API_URL = "";
 
 // Changed to capital 'P' for proper React component naming
 function Page() {
+  const router = useRouter ()
   const [cart, setCart] = useState<CartItem[]>([]);
   const [coupon, setCoupon] = useState("");
   const [loading, setLoading] = useState(true); // Fixed casing to lowercase 'l'
@@ -164,7 +166,8 @@ function Page() {
             onChange={(e) => setCoupon(e.target.value)}
             className="border-2 border-black p-2 rounded"
           />
-          <Button className="bg-red-600">Apply Coupon</Button>
+          <Button disabled={cart.length === 0}
+                onClick={() => router.push(`/checkout`)} className="bg-red-600">Apply Coupon</Button>
         </div>
 
         {/* Cart Total Card */}
@@ -186,7 +189,7 @@ function Page() {
           </div>
 
           <div className="flex items-center justify-center mt-4">
-            <Button className="bg-red-600 w-full">Proceed to checkout</Button>
+            <Button onClick={() => router.push(`/checkout`)} className="bg-red-600 w-full">Proceed to checkout</Button>
           </div>
         </div>
       </div>
