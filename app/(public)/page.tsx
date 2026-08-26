@@ -10,7 +10,6 @@ const Home = () => {
     <div>
       <Hero />
       <Product />
-
       <CustomCarousel />
       <BeforeFooter BeforeFooterData={BeforeFooterData}/>
     </div>

@@ -9,10 +9,10 @@ import Image from 'next/image';
 const Footer = () => {
   return (
     <div>
-        <div className='h-80 mt-20 bg-[#000000]'>
-            <div className='container mx-auto flex justify-center gap-15 pt-12'>
-                <div className='text-[#fafafa]'>
-                    <h3 className='text-white'>CARTS</h3>
+        <div className='h-125 md:h-80 mt-20 bg-[#000000]'>
+            <div className='container flex flex-wrap mx-auto justify-center gap-10 pt-12 shadow-lg'>
+                <div className='text-[#fafafa] w-60'>
+                    <h6 className='text-white'>CARTS</h6>
                     <p className='pt-3 text-sm'>Subscribe</p>
                     <p className='pt-3 text-xs'>Get 10% off your first order</p>
                     <div className="relative flex items-center pt-3">
@@ -20,7 +20,7 @@ const Footer = () => {
                         <input
                         type="text"
                         placeholder="Enter your email?"
-                        className="w-full pl-4 pr-15 py-2 bg-black border-1 border-white rounded-md text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400 transition-all"
+                        className="w-full pl-4 pr-15 py-2 bg-black border-2 border-white rounded-md text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400 transition-all"
                         />
                         {/* search icon */}
                         <div className="absolute right-3 flex items-center pointer-events-none">
@@ -30,13 +30,13 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className='text-[#fafafa]'>
-                    <h3>Support</h3>
+                    <h6 className='text-white'>Support</h6>
                     <p className='pt-3 text-sm'>111 Bijoy sarani, Dhaka,<br /> DH 1515, Bangladesh.</p>
                     <p className='pt-3 text-sm'>exclusive@gmail.com</p>
                     <p className='pt-3 text-sm'>+88015-88888-9999</p>
                 </div>
                 <div className='text-[#fafafa]'>
-                    <h3>Account</h3>
+                    <h6 className='text-white'>Account</h6>
                     <p className='pt-3 text-sm'>My Account</p>
                     <p className='pt-3 text-sm'>Login/Register</p>
                     <p className='pt-3 text-sm'>Cart</p>
@@ -44,14 +44,14 @@ const Footer = () => {
                     <p className='pt-3 text-sm'>Shop</p>
                 </div>
                 <div className='text-[#fafafa]'>
-                    <h3>Quick Link</h3>
+                    <h6 className='text-white'>Quick Link</h6>
                     <p className='pt-3 text-sm'>Privacy Policy</p>
                     <p className='pt-3 text-sm'>Terms Of Use</p>
                     <p className='pt-3 text-sm'>FAQ</p>
                     <p className='pt-3 text-sm'>Contact</p>
                 </div>
                 <div className='text-[#fafafa]'>
-                    <h3>Download App</h3>
+                    <h6 className='text-white'>Download App</h6>
                     <p className='pt-3 text-xs'>Save $3 with App New User Only</p>
                     <div className='flex pt-3 gap-2'>
                         <div>
@@ -70,8 +70,8 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex justify-center items-center h-10 border-t-2 border-b-gray-950 mt-8 text-gray-500'>
-                <p className='text-xs font-light pt-2'>&copy; Copyright icbm-project {new Date().getFullYear()}. All right reserved</p>
+            <div className='flex justify-center items-center h-10 border-t-2 border-t-mist-600 mt-8 text-gray-500 bg-black'>
+                <p className='text-xs font-light py-2'>&copy; Copyright icbm-project {new Date().getFullYear()}. All right reserved</p>
             </div>
         </div>     
     </div>
