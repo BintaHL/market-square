@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 // Interface mapping your exact card prop requirements
 interface ApiCard {
@@ -37,7 +38,7 @@ export default function CustomCardCarousel() {
         const data = res.data;
         console.log(data);
         setCards(data);
-      } catch (err: any) {
+      } catch (err: any[]) {
         const errorMessage =
           err.response?.data?.message || err.message || "An error occurred fetching data.";
         setError(errorMessage);
@@ -159,9 +160,11 @@ export default function CustomCardCarousel() {
               <div className="w-42.5 h-36.25 rounded-sm border border-[#E5E5E5] flex flex-col items-center justify-center gap-2 shadow-sm shadow-grayish bg-white">
 
                 {/* Image / Icon */}
-                <img
+                <Image
                   src={card.image}
                   alt={card.alt || card.category}
+                  width={1000}
+                  height={50}
                   className="w-14 h-14 object-contain"
                 />
 

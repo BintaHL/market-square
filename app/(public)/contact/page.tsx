@@ -4,13 +4,21 @@ import React from "react";
 
 const Contact = () => {
     return (
-        <div className="w-full mt-20">
+        <div className="w-full py-20">
             <div className="max-w-[80%] mx-auto">
+                {/* Breadcrumb */}
+                        <div className="flex lg:hidden items-start justify-start text-sm gap-2 mb-10">
+
+                            <h6 className="text-dark-muted">Home</h6>
+                            <span>/</span>
+                            <h6> My Account</h6>
+
+                        </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 items-start">
 
                     {/* RIGHT FORM*/}
-                    <div className="order-1 lg:order-2 w-full min-w-0 lg:my-30">
+                    <div className="order-1 lg:order-2 w-full min-w-0 my-10 lg:my-30">
 
                         <form className="flex flex-col items-start justify-center w-full">
 
@@ -55,7 +63,7 @@ const Contact = () => {
                                 />
 
                                 {/* Button */}
-                                <div className="flex items-end justify-end w-full">
+                                <div className="flex items-center justify-center md:items-end md:justify-end w-full">
                                     <Button href="#">
                                         Send Message
                                     </Button>
@@ -72,44 +80,27 @@ const Contact = () => {
                     <div className="order-2 lg:order-1 flex flex-col gap-5 sticky top-30 w-full min-w-0">
 
                         {/* Breadcrumb */}
-                        <div className="flex items-start justify-start text-sm gap-2 mb-5 mt-20">
+                        <div className="items-start justify-start text-sm gap-2 mb-5 hidden lg:flex">
 
-                            <h6 className="text-dark-muted">
-                                Home
-                            </h6>
-
+                            <h6 className="text-dark-muted">Home</h6>
                             <span>/</span>
-
-                            <h6>
-                                My Account
-                            </h6>
+                            <h6> My Account</h6>
 
                         </div>
 
 
                         {/* Call To Us */}
                         <div className="flex flex-col gap-3">
-
                             <div className="flex items-center gap-4">
-
                                 <div className="bg-primary w-8 h-8 flex items-center justify-center rounded-full shrink-0">
                                     <PhoneCallIcon className="text-light h-5 w-5" />
                                 </div>
-
-                                <h5>
-                                    Call to Us
-                                </h5>
-
+                                <h5> Call to Us </h5>
                             </div>
 
-                            <p className="text-sm">
-                                We are available 24/7, 7 days a week.
-                            </p>
+                            <p className="text-sm"> We are available 24/7, 7 days a week.</p>
 
-                            <p className="text-sm">
-                                Phone: +8801611112222
-                            </p>
-
+                            <p className="text-sm"> Phone: +8801611112222 </p>
                         </div>
 
 
