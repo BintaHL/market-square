@@ -33,11 +33,11 @@ const Checkout = ({ items = [] }: OrderSummaryProps) => {
       <div className="max-w-[80%] mx-auto">
         <div className="flex items-center text-sm gap-2 mb-5 whitespace-nowrap mt-30">
           <p className="text-gray-500 mb-10">
-            <Link href="/">Cart</Link>/
+            <Link href="/cart">Cart</Link>/ <span className="text-black">Checkout</span>
              {/* <Link href="/my account">My Account</Link>/
               <Link href="/product">product</Link>/
                <Link href="/view cart">cart</Link> /{" "} */}
-            <span className="text-black">Checkout</span>
+            
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] lg:grid-cols-[2fr_2fr] gap-5 lg:gap-10 items-start">
@@ -139,7 +139,7 @@ const Checkout = ({ items = [] }: OrderSummaryProps) => {
                       </label>
 
                       <input
-                        type="number"
+                        type="text"
                         name="Phone number"
                         className="bg-card-bg text-sm w-full min-w-0 h-11 outline-dark-muted px-3"
                       />
