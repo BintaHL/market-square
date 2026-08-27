@@ -93,7 +93,7 @@ function Page() {
     return <div className="p-10 text-center">Your cart is empty</div>; // Fixed 'lenght' typo
 
   return (
-    <div className="max-w-[80%] mx-auto pt-50 flex">
+    <div className="max-w-[80%] mx-auto pt-50 flex mt-20 min-h-screen">
       <div className=" flex flex-col w-full gap-10">
         <p className="text-gray-500 mb-10">
           <Link href="/">Home</Link> / <span className="text-black">Cart</span>
