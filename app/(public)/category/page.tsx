@@ -33,7 +33,7 @@ export default async function Category(){
 
   return (
     <div>
-        <div className='mx-auto'>
+        <div className='mx-auto mt-20'>
           <ul className='pt-10'>
           {/* Map over unique categories string array*/}
           {uniqueCategories.map((categoryName, index) => {
@@ -42,7 +42,8 @@ export default async function Category(){
                       {/* Link to a filtered collection page of separate categories */}
                       <div className='flex'>
                         <Link 
-                          href={`/dashboard/products?category=${categoryName}`} 
+                          // href={`/products?category=${categoryName}`} 
+                          href={`/category/${categoryName}`}
                           className='text-gray-800 hover:text-amber-800 rounded-2xl'>
                           {categoryName} <span><ChevronRight className='inline ml-6' size={15} /></span>
                         </Link>

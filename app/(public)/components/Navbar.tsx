@@ -9,11 +9,11 @@ import { ProfileDropdownCustom } from '../profile/profileDropdown';
 const Navbar = () => {
   return (
     <div className='fixed w-full left-0 top-0 z-100'>
-        <div className='z-100 h-[140px] shadow-md'>
+        <div className='z-100 shadow-md bg-white'>
             {/* First part of the nav */}
-            <div className='w-full h-[60px] md:h-[40px] bg-[#000000] py-3'>
+            <div className='w-full bg-[#000000] py-3 hidden md:block'>
                 <div className=''>
-                    <div className='flex flex-col md:flex-row max-w-7xl md:px-4 text-center text-sm justify-end'>
+                    <div className='flex  max-w-7xl md:px-4 text-center text-sm justify-end'>
                         <div className='pr-29'>
                             <p className='text-white inline-flex items-center justify-center text-xs '>
                                 Summer Sale For All Swim And Free Express Delivery - OFF 50%
@@ -29,19 +29,19 @@ const Navbar = () => {
                 </div>
             </div>
             {/* The second part of the nav */}
-            <div className='w-full z-100'>
-                <div className='container mx-auto flex flex-col md:flex-row items-center py-5 md:py-8 gap-20 justify-between'>
+            <div className='w-full z-100 hidden md:block'>
+                <div className='container mx-auto flex md:flex-row items-center py-5 md:py-8 gap-20 justify-between bg-white'>
                     <div className='font-bold'>
                         <h3>CARTS</h3>
                     </div>
-                    <div className='flex flex-col md:flex-row justify-between md:gap-40 bg-white'>
-                        <div className='flex flex-col md:flex-row mx-auto'>
-                            <Link href="/" className='mb-5 md:pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer text-2xl md:text-[12px]'>Home</Link>
-                            <Link href="/contact" className='mb-5 md:pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer text-2xl md:text-[12px]'>Contact</Link>
-                            <Link href="/about" className='mb-5 md:pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer text-2xl md:text-[12px]'>About</Link>
-                            <Link href="/auth/signin" className='mb-5 md:pr-6 hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer text-2xl md:text-[12px] whitespace-nowrap'>Sign Up</Link>
+                    <div className='flex md:flex-row justify-between items-center md:gap-40 bg-white gap-4'>
+                        <div className='flex md:flex-row gap-8'>
+                            <Link href="/" className='hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer text-2xl md:text-[17px]'>Home</Link>
+                            <Link href="/contact" className='hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer text-2xl md:text-[17px]'>Contact</Link>
+                            <Link href="/about" className='hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer text-2xl md:text-[17px]'>About</Link>
+                            <Link href="/auth/signin" className='hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer text-2xl md:text-[17px] whitespace-nowrap'>Sign Up</Link>
                         </div>
-                        <div className='flex flex-col md:flex-row gap-4 items-center justify-center'>
+                        <div className='flex md:flex-row gap-4 items-center justify-center'>
                             <div className="relative flex items-center justify-center">
                                 {/* Input field with right-side padding reserved */}
                                 <input
@@ -54,7 +54,7 @@ const Navbar = () => {
                                     <Search className="h-5 w-5 text-black" />
                                 </div>
                             </div>
-                            <div className='flex justify-between gap-10'>
+                            <div className='flex justify-between gap-5'>
                                 <Heart size={20}/>
                                 <ShoppingCart size={20}/>
                             </div>
@@ -63,6 +63,11 @@ const Navbar = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            {/* Mobile navbar */}
+            <div className='block md:hidden'>
+                <p>Mobile nav</p>
+                <Searchbar />
             </div>
         </div>
     </div>       

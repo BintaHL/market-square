@@ -1,77 +1,81 @@
-// import React from 'react';
-// import axios from 'axios';
-// import Image from 'next/image';
-// import Link from 'next/link';
-// import { Product } from '../../products/page'; 
+import React from 'react';
+import axios from 'axios';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/app/global-components/buttonsLayout/Button';
 
-// interface PageProps {
-//   params: Promise<{ id: string }>; 
-// }
-
-// // console.log("The current id is ", id)
-// async function getSingleProduct(id: string): Promise<Product | null> {
-//   try {
-//     const response = await axios.get<Product>(`https://fakestoreapi.com/products/${id}`);
-//     return response.data;
-//   } catch (error) {
-//     console.error('Failed to fetch product details:', error);
-//     return null;
-//   }
-// }
-
-// export default async function ProductDetailsPage({ params }: PageProps) {
-//   const { id } = await params;
-//   const product = await getSingleProduct(id);
-
-//   if (!product) {
-//     return (
-//       <div className='p-10'>
-//         <p>Product not found.</p>
-//         <Link href="/dashboard/products">← Back to Products</Link>
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div>
-//       <div className='mt-12 items-center w-full flex flex-col'>
-//         <div className='ml-20 mr-20'>
-//           <p className='text-[#666] text-2xl'>
-//             Category: 
-//           </p>
-//           <h1 className='mt-10'>{product.name}</h1>
-
-//           <div className='text-center mt-5'>
-//             <Image 
-//               src={product?.image || ""} 
-//               alt={product.name} 
-//               width={50} 
-//               height={50} 
-//               style={{ objectFit: 'contain' }}
-//               priority 
-//             />
-//           </div>
-
-//           <h2 className='text-[#222] mt-3'>${product.price}</h2>
-//           <p className='space-y-1.6 text-[#444] mt-8 pb-8'>
-            
-//           </p>
-//           <Link href="/products/" className='bg-orange-500 text-white p-1 rounded-lg'
-//             >Back to Products</Link>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-import React from 'react'
-
-const Productid = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+export interface Product {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
 }
 
-export default Productid
+interface PageProps {
+  params: Promise<{ id: string }>; 
+}
+
+// console.log("The current id is ", id)
+async function getSingleProduct(id: string): Promise<Product | null> {
+  try {
+    const response = await axios.get<Product>(`https://fakestoreapi.com/products/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch product details:', error);
+    return null;
+  }
+}
+
+export default async function ProductDetailsPage({ params }: PageProps) {
+  const { id } = await params;
+  const product = await getSingleProduct(id);
+
+  if (!product) {
+    return (
+      <div className='p-10'>
+        <p>Product not found.</p>
+        <Link href="/products">← Back to Products</Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className='container mx-auto max-h-screen mt-50'>
+      <div className='items-center justify-center w-full mx-auto flex flex-col'>
+        <h3 className='text-[#666] text-2xl'>
+          Category: {product.category}
+        </h3>
+        <div className='flex flex-col md:flex-row w-full mx-auto gap-10'>
+          <div className='flex mt-5 w-1/2 items-center justify-center'>
+            <Image 
+              src={product?.image || ""} 
+              alt={product.title} 
+              width={400} 
+              height={400} 
+              style={{ objectFit: 'contain' }}
+              priority 
+              className='w-auto h-auto'
+            />
+          </div>
+          <div className='mx-auto w-1/2'>
+            <h3 className='mt-10'>{product.title}</h3>
+            <p className='text-[#222] mt-3 text-2xl'>${product.price}</p>
+            <p className='space-y-1.6 text-[#444] mt-4 pb-4 text-justify'>
+              {product.description}
+            </p>
+          </div>
+        </div>
+        <div className='flex gap-5'>
+          <button className='mt-10 bg-primary py-2 px-4 rounded-sm'>
+          <Link href="/allproducts" className='text-white'>Back to Products</Link>
+          </button>
+          <button className='mt-10 bg-primary py-2 px-4 rounded-sm'>
+            <Link href="/cart" className='text-white'>Add to Cart</Link>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
