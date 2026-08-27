@@ -1,26 +1,28 @@
 import { EyeIcon, HeartIcon, ShoppingCartIcon } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
-import React from 'react'
 
 const Card = () => {
   return (
     <div className="w-full min-w-0 flex flex-col gap-4 shadow-sm shadow-grayish">
       <div className="group relative w-full aspect-[1/0.82] bg-card-bg flex flex-col items-center justify-center overflow-hidden">
 
-        <img
+        <Image
           src="/images/google.svg"
           alt=""
+          width={1000}
+          height={50}
           className="w-[65%] h-[75%] object-contain transition-transform duration-300 group-hover:scale-105"
         />
 
        
-          <div
+        <div
             className={`absolute top-3 left-3 w-12.75 h-6.5 rounded-sm bg-primary text-light flex items-center justify-center`}
           >
             <p className="text-[12px] font-normal leading-4.5 uppercase">
               New
             </p>
-          </div>
+        </div>
    
 
         <div className="absolute top-3 right-3 flex flex-col gap-2">

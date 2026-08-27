@@ -11,18 +11,18 @@ interface ApiCard {
   image: string;
   alt: string;
   title: string;
-  category:string;
+  category: string;
 }
 
 
 export default function CustomCardCarousel() {
   const [cards, setCards] = useState<ApiCard[]>([]);
-  
+
   // 1. INFINITE LOOP SETUP: Start index at 5 because of the 5 cloned buffer items appended at the front
   const visibleItems = 5;
   const [currentIndex, setCurrentIndex] = useState(visibleItems);
   const [isTransitioning, setIsTransitioning] = useState(true);
-  
+
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -31,32 +31,32 @@ export default function CustomCardCarousel() {
 
   // Fetch data using Axios
   useEffect(() => {
-   const fetchCarouselData = async () => {
-  try {
-    setIsLoading(true);
-    const res = await axios.get<ApiCard[]>("https://fakestoreapi.com/products");
-    const data = res.data;
-    console.log(data);
-    setCards(data);
-  } catch (err: unknown) {
-    let errorMessage = "An error occurred fetching data.";
+    const fetchCarouselData = async () => {
+      try {
+        setIsLoading(true);
+        const res = await axios.get<ApiCard[]>("https://fakestoreapi.com/products");
+        const data = res.data;
+        console.log(data);
+        setCards(data);
+      } catch (err: unknown) {
+        let errorMessage = "An error occurred fetching data.";
 
-    if (axios.isAxiosError(err)) {
-      errorMessage = err.response?.data?.message || err.message;
-    } 
-    
-    else if (err instanceof Error) {
-      errorMessage = err.message;
-    }
+        if (axios.isAxiosError(err)) {
+          errorMessage = err.response?.data?.message || err.message;
+        }
 
-    setError(errorMessage);
-  } finally {
-    setIsLoading(false);
-  }
-};
+        else if (err instanceof Error) {
+          errorMessage = err.message;
+        }
 
-fetchCarouselData();
-}, []);
+        setError(errorMessage);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCarouselData();
+  }, []);
 
   // 2. NAVIGATIONAL HANDLERS: Simply increment/decrement index positions forward/backward
   const prevSlide = () => {
@@ -123,68 +123,74 @@ fetchCarouselData();
 
   return (
     <div className="w-[80%] mx-auto py-8">
-      
-      {/* HEADER SECTION CONTROLLING THE POSITION ON THE RIGHT */}
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white">Categories</h2>
-        
-        {/* Navigation arrows positioned on the top right above content */}
-        {cards.length > visibleItems && (
-          <div className="flex items-center gap-2">
-            <button
-              onClick={prevSlide}
-              className="p-2 rounded-lg border border-[#E5E5E5] bg-white hover:bg-gray-50 text-gray-700 transition-colors shadow-sm"
-              aria-label="Previous items"
-            >
-              <ChevronLeft />
-            </button>
-            
-            <button
-              onClick={nextSlide}
-              className="p-2 rounded-lg border border-[#E5E5E5] bg-white hover:bg-gray-50 text-gray-700 transition-colors shadow-sm"
-              aria-label="Next items"
-            >
-              <ChevronRight />
-            </button>
-          </div>
-        )}
-      </div>
+      <div className="flex flex-col gap-5">
 
-      {/* CAROUSEL VIEWPORT CONTAINER */}
-      <div className="w-full overflow-hidden">
-        <div
-          onTransitionEnd={handleTransitionEnd}
-          className="flex"
-          style={{
-            transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`,
-            transition: isTransitioning ? "transform 500ms ease-out" : "none",
-          }}
-        >
-          {extendedCards.map((card, index) => (
-            // w-1/5 shrink-0 configures exactly 5 card frames horizontally across the tracking row 
-            <div key={`${card.id}-${index}`} className="w-1/5 shrink-0 flex justify-center px-2">
-                
-              {/* YOUR EXACT CARD FORMAT MAINTAINED */}
-              <div className="w-42.5 h-36.25 rounded-sm border border-[#E5E5E5] flex flex-col items-center justify-center gap-2 shadow-sm shadow-grayish bg-white">
-
-                {/* Image / Icon */}
-                <Image
-                  src={card.image}
-                  alt={card.alt || card.category}
-                  width={1000}
-                  height={50}
-                  className="w-14 h-14 object-contain"
-                />
-
-                {/* Text */}
-                <p className="text-[16px] font-normal leading-6 tracking-[0%] text-gray-900 capitalize text-center px-1 line-clamp-1">
-                  {card.category}
-                </p>
-              </div>
-
-            </div>
-          ))}
+        <div className="flex items-center gap-4">
+          <div className="bg-primary h-10 w-5 rounded-sm"></div>
+          <p className="text-primary">Categories</p>
         </div>
+
+        {/* HEADER SECTION CONTROLLING THE POSITION ON THE RIGHT */}
+        <div className="flex items-center justify-between mb-6">
+          <h2>Browse By Category</h2>
+          {/* Navigation arrows positioned on the top right above content */}
+          {cards.length > visibleItems && (
+            <div className="flex items-center gap-2">
+              <button
+                onClick={prevSlide}
+                className="p-2 rounded-lg border border-[#E5E5E5] bg-white hover:bg-gray-50 text-gray-700 transition-colors shadow-sm"
+                aria-label="Previous items"
+              >
+                <ChevronLeft />
+              </button>
+
+              <button
+                onClick={nextSlide}
+                className="p-2 rounded-lg border border-[#E5E5E5] bg-white hover:bg-gray-50 text-gray-700 transition-colors shadow-sm"
+                aria-label="Next items"
+              >
+                <ChevronRight />
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* CAROUSEL VIEWPORT CONTAINER */}
+        <div className="w-full overflow-hidden">
+          <div
+            onTransitionEnd={handleTransitionEnd}
+            className="flex"
+            style={{
+              transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`,
+              transition: isTransitioning ? "transform 500ms ease-out" : "none",
+            }}
+          >
+            {extendedCards.map((card, index) => (
+              <div key={`${card.id}-${index}`} className="w-1/5 shrink-0 flex justify-center px-2">
+
+
+                <div className="w-42.5 h-36.25 rounded-sm border border-[#E5E5E5] flex flex-col items-center justify-center gap-2 shadow-sm shadow-grayish bg-white">
+
+                  {/* Image / Icon */}
+                  <Image
+                    src={card.image}
+                    alt={card.alt || card.category}
+                    width={1000}
+                    height={50}
+                    className="w-14 h-14 object-contain"
+                  />
+
+                  {/* Text */}
+                  <p className="text-[16px] font-normal leading-6 tracking-[0%] text-gray-900 capitalize text-center px-1 line-clamp-1">
+                    {card.category}
+                  </p>
+                </div>
+
+              </div>
+            ))}
+          </div>
+        </div>
+         <div className="w-full h-0.5 bg-card-bg mt-10"></div>
       </div>
     </div>
   );

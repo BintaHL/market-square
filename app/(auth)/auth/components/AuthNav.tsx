@@ -6,13 +6,13 @@ import { Search } from 'lucide-react';
 
 const AuthNav = () => {
     return (
-        <div className='z-100'>
+        <div className='sticky top-0 z-100'>
             {/* border-b-2 border-b-mist-400' */}
-            <div className='fixed w-full'>
+            <div className='w-full'>
                 {/* The black upper part of the nav */}
                 <div className="hidden md:block">
-                    <div className="bg-dark flex items-center justify-center">
-                        <div className='w-[80%] flex text-center text-sm justify-between'>
+                    <div className="bg-dark">
+                        <div className='max-w-[80%] mx-auto flex items-center justify-center text-sm'>
                             <p className='text-white text-xs'>
                                 Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
                                 <span className='ml-2 inline-flex items-center underline font-semibold cursor-pointer'>ShopNow</span>
@@ -26,8 +26,8 @@ const AuthNav = () => {
                     </div>
                 </div>
                 {/* The second part of the nav */}
-                <div className='shadow-sm bg-light z-100 py-5'>
-                    <div className='w-[80%] mx-auto'>
+                <div className='shadow-sm bg-light z-100 py-5 hidden lg:block'>
+                    <div className='max-w-[80%] mx-auto'>
                         <div className='flex items-center justify-between'>
                             <div className='font-bold'>
                                 <h3>CARTS</h3>

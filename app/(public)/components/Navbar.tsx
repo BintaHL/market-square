@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Heart } from 'lucide-react';
 import { ShoppingCart } from 'lucide-react';
 import { Search } from 'lucide-react';
+import { ProfileDropdownCustom } from '../profile/profileDropdown';
 import Searchbar from './Searchbar';
 
 const Navbar = () => {
@@ -58,6 +59,8 @@ const Navbar = () => {
                                 <Heart size={20}/>
                                 <ShoppingCart size={20}/>
                             </div>
+                            {/* Profile Icon */}
+                            <ProfileDropdownCustom />
                         </div>
                     </div>
                 </div>
