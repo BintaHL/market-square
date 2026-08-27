@@ -34,7 +34,7 @@ const Product = async () => {
   const products = await getProducts();
 
   return (
-    <div className="w-[80%] mx-auto  mt-10">
+    <div className="w-[80%] mx-auto mt-10">
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.slice(0,8).map((product) => (
@@ -137,7 +137,16 @@ const Product = async () => {
           </div>
         ))}
       </div>
-
+        <div className="flex items-center justify-center mt-10">
+          <button className="bg-primary text-white p-2 px-3 rounded-sm hover:text-white hover:bg-green-800">
+            <Link 
+              // href={`/products?category=${categoryName}`} 
+              href={`/allproducts`}
+              className=''>
+             <span>View All Products </span>
+            </Link>
+          </button>
+        </div>
     </div>
   )
 }

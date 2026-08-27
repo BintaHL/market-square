@@ -54,7 +54,7 @@ const Navbar = () => {
                                     <Search className="h-5 w-5 text-black" />
                                 </div>
                             </div>
-                            <div className='flex justify-between gap-10'>
+                            <div className='flex justify-between gap-5'>
                                 <Heart size={20}/>
                                 <ShoppingCart size={20}/>
                             </div>
