@@ -69,7 +69,7 @@ export default async function ProductDetailsPage({ params }: PageProps) {
         </div>
         <div className='flex gap-5'>
           <button className='mt-10 bg-primary py-2 px-4 rounded-sm'>
-          <Link href="/products/" className='text-white'>Back to Products</Link>
+          <Link href="/allproducts" className='text-white'>Back to Products</Link>
           </button>
           <button className='mt-10 bg-primary py-2 px-4 rounded-sm'>
             <Link href="/cart" className='text-white'>Add to Cart</Link>

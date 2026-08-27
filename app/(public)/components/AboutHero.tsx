@@ -4,7 +4,7 @@ import React from 'react'
 const AboutHero = () => {
   return (
     <div className='container max-w-6xl flex ml-auto mt-20 min-h-screen'>
-        <div className='w-full flex justify-end gap-5'>
+        <div className='w-full flex flex-col md:flex-row justify-end gap-5'>
             <div className='w-1/2 h-137.5 flex items-center'>
                 <div className='pl-10'>
                     <h1 className='text-4xl font-bold mb-10'>Our Story</h1>
