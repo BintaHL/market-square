@@ -9,7 +9,7 @@ const Signin = () => {
             <div className="w-full md:max-w-[80%] mx-auto px-10 md:px-0">
                 <div className="flex items-center md:justify-between md:gap-10 pt-30">
 
-                    <div className="bg-[#CBE4E8] pt-10 hidden md:block">
+                    <div className="bg-[#CBE4E8] mt-20 hidden md:block">
                         <Image src="/images/auth2.png" alt="Sign Logo" width={500} height={20} className="z-10 py-px md:hidden lg:block" />
                         <Image src="/images/auth2.png" alt="Sign Logo" width={300} height={20} className="z-10 py-px lg:hidden md:block" />
                     </div>
@@ -34,7 +34,7 @@ const Signin = () => {
 
                 </div>
             </div>
-            <div className="stick top-40 md:w-100 lg:w-158 h-120 bg-[#CBE4E8] rounded-tr-sm rounded-br-sm -mt-120  hidden md:block"></div>
+            <div className="top-40 md:w-100 lg:w-158 h-120 bg-[#CBE4E8] rounded-tr-sm rounded-br-sm -mt-120  hidden md:block"></div>
         </div>
     )
 }

@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 
 interface CategoryCardProps {
@@ -14,9 +15,11 @@ export function Smallcard({
   return (
     <div className="w-42.5 h-36.25 rounded-sm border border-[#E5E5E5] flex flex-col items-center justify-center gap-2 shadow-sm shadow-grayish">
       {/* Image / Icon */}
-      <img
+      <Image
         src={image}
         alt={alt}
+        width={1000}
+        height={50}
         className="w-14 h-14 object-contain"
       />
 
