@@ -33,7 +33,7 @@ export default async function Category(){
 
   return (
     <div>
-        <div className='mx-auto'>
+        <div className='mx-auto mt-20'>
           <ul className='pt-10'>
           {/* Map over unique categories string array*/}
           {uniqueCategories.map((categoryName, index) => {

@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-// import { CartProvider } from "@/app/(public)/context/CartContext";
+import { AuthProvider } from "./(auth)/auth/context/AuthContext";
 
 // Body / Price font
 const inter = Inter({
@@ -31,10 +31,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        {/* <CartProvider>   */}
-          {children} 
-
-        {/* </CartProvider> */}
+          
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

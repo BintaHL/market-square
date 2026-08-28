@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Heart } from 'lucide-react';
 import { ShoppingCart } from 'lucide-react';
 import { Search } from 'lucide-react';
+import { ProfileDropdownCustom } from '../profile/profileDropdown';
 import Searchbar from './Searchbar';
 
 const Navbar = () => {
@@ -54,10 +55,12 @@ const Navbar = () => {
                                     <Search className="h-5 w-5 text-black" />
                                 </div>
                             </div>
-                            <div className='flex justify-between gap-10'>
+                            <div className='flex justify-between gap-5'>
                                 <Heart size={20}/>
                                 <ShoppingCart size={20}/>
                             </div>
+                            {/* Profile Icon */}
+                            <ProfileDropdownCustom />
                         </div>
                     </div>
                 </div>
