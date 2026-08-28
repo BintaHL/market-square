@@ -3,8 +3,13 @@ import { ChevronDown, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { Heart } from 'lucide-react';
 import { ShoppingCart } from 'lucide-react';
+<<<<<<< HEAD
 import Search from '../search/page'
 // import { Search } from 'lucide-react';
+=======
+import { Search } from 'lucide-react';
+import { ProfileDropdownCustom } from '../profile/profileDropdown';
+>>>>>>> f18495c44dfe387d96056c28e35e9d0341e7f70b
 import Searchbar from './Searchbar';
 import ProductsFilter from './ProductsFilter';
 
@@ -42,7 +47,7 @@ const Navbar = () => {
                             <Link href="/" className='hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer text-2xl md:text-[17px]'>Home</Link>
                             <Link href="/contact" className='hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer text-2xl md:text-[17px]'>Contact</Link>
                             <Link href="/about" className='hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer text-2xl md:text-[17px]'>About</Link>
-                            <Link href="/auth/signin" className='hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer text-2xl md:text-[17px] whitespace-nowrap'>Sign Up</Link>
+                            <Link href="/auth/signup" className='hover:underline hover:decoration-mist-400 hover:decoration-2 hover:underline-offset-4 cursor-pointer text-2xl md:text-[17px] whitespace-nowrap'>Sign Up</Link>
                         </div>
                         <div className='flex md:flex-row gap-4 items-center justify-center'>
                             <div className="relative flex items-center justify-center">
@@ -62,6 +67,8 @@ const Navbar = () => {
                                 <Heart size={20}/>
                                 <ShoppingCart size={20}/>
                             </div>
+                            {/* Profile Icon */}
+                            <ProfileDropdownCustom />
                         </div>
                     </div>
                 </div>

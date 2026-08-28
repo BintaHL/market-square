@@ -30,7 +30,7 @@ async function getProducts(): Promise<FakeStoreProduct[]> {
 }
 
 
-const Product = async () => {
+const OurProduct = async () => {
   const products = await getProducts();
 
   return (
@@ -39,14 +39,14 @@ const Product = async () => {
       <div className="flex flex-col gap-5">
         <div className="flex items-center gap-4">
           <div className="bg-primary h-10 w-5 rounded-sm"></div>
-          <p className="text-primary">Top Products</p>
+          <p className="text-primary">Our Products</p>
         </div>
 
-        <h2>Flash Sales</h2>
+        <h2>Explore Our Products</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
-          {products.slice(0, 4).map((product) => (
+          {products.slice(0, 8).map((product) => (
             <div key={product.id} className="w-full min-w-0 flex flex-col gap-4 shadow- shadow-grayish border rounded-sm">
 
               {/* 1. START RELATIVE PREVIEW CONTAINER */}
@@ -146,22 +146,10 @@ const Product = async () => {
             </div>
           ))}
         </div>
+      </div>
 
-        
-      </div>
-      <div className="flex items-center justify-center mt-10">
-        <button className="bg-primary text-white p-2 px-3 rounded-sm hover:text-white hover:bg-primary-hover">
-          <Link
-            // href={`/products?category=${categoryName}`} 
-            href={`/allproducts`}
-            className=''>
-            <span>View All Products </span>
-          </Link>
-        </button>
-      </div>
-      <div className="w-full h-0.5 bg-card-bg mt-15"></div>
     </div>
   )
 }
 
-export default Product
+export default OurProduct

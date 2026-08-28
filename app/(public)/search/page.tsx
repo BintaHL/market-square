@@ -161,8 +161,7 @@ const Search = () => {
           {filteredSuggestions.map((item) => (
             <div 
               key={item.id} 
-              // 3. Attach the selection handler
-              onClick={() => handleSelectProduct(item.id)}
+              // onClick={() => handleSelectProduct(item.id)}
               className="p-3 cursor-pointer hover:bg-amber-50 border-b last:border-b-0 border-gray-100 transition-colors text-sm text-gray-700"
             >
               <Link href={`/products/${item.id}`}>

@@ -5,8 +5,23 @@ import {
   Star,
   StarHalf,
 } from "lucide-react"
-import { Product } from "../types/product";
 import Link from "next/link";
+import Image from "next/image";
+
+interface Product {
+    product?: Product;
+
+    id?: string | number;
+    image?: string;
+    imageAlt?: string;
+    name?: string;
+    price?: number;
+    reviews?: number;
+    rating?: number;
+    badge?: string;
+    badgeColor?: string;
+    onAddToCart?: (id: string | number) => void;
+}
 
 interface ProductCardProps {
   product: Product;
@@ -29,9 +44,11 @@ export function ProductCard({ product }: ProductCardProps) {
     <div className="w-full min-w-0 flex flex-col gap-4 shadow-sm shadow-grayish">
       <div className="group relative w-full aspect-[1/0.82] bg-card-bg flex flex-col items-center justify-center overflow-hidden">
 
-        <img
-          src={image}
-          alt={name}
+        <Image
+          src=""
+          alt=""
+          height={50}
+          width={1000}
           className="w-[65%] h-[75%] object-contain transition-transform duration-300 group-hover:scale-105"
         />
 
