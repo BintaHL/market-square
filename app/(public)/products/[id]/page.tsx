@@ -1,4 +1,5 @@
 import React from 'react';
+import AddToCartButton from "./component/AddToCartButton"; // <-- import the button
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,6 +12,7 @@ export interface Product {
   description: string;
   category: string;
   image: string;
+  qty: number,
 }
 
 interface PageProps {
@@ -31,6 +33,7 @@ async function getSingleProduct(id: string): Promise<Product | null> {
 export default async function ProductDetailsPage({ params }: PageProps) {
   const { id } = await params;
   const product = await getSingleProduct(id);
+  
 
   if (!product) {
     return (
@@ -71,9 +74,14 @@ export default async function ProductDetailsPage({ params }: PageProps) {
           <button className='mt-10 bg-primary py-2 px-4 rounded-sm'>
           <Link href="/products/" className='text-white'>Back to Products</Link>
           </button>
-          <button className='mt-10 bg-primary py-2 px-4 rounded-sm'>
+
+           {/* <AddToCartButton product={product} /> */}
+          {/* <button className='mt-10 bg-primary py-2 px-4 rounded-sm'>
             <Link href="/cart" className='text-white'>Add to Cart</Link>
-          </button>
+          </button> */}
+                  <div className="mt-6">
+            <AddToCartButton product={product} />
+          </div>
         </div>
       </div>
     </div>
