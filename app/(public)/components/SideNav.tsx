@@ -1,5 +1,6 @@
 import React from 'react'
 import Category from '../category/page'
+import Search from '../search/page'
 
 const SideNav = () => {
   return (

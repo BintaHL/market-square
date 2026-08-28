@@ -50,7 +50,7 @@ export default async function ProductDetailsPage({ params }: PageProps) {
           Category: {product.category}
         </h3>
         <div className='flex flex-col md:flex-row w-full mx-auto gap-10'>
-          <div className='flex mt-5 w-1/2 items-center justify-center'>
+          <div className='flex mt-5 mx-auto w-1/2 items-center justify-center'>
             <Image 
               src={product?.image || ""} 
               alt={product.title} 
