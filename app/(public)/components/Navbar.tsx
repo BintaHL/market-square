@@ -5,6 +5,7 @@ import { Heart } from 'lucide-react';
 import { ShoppingCart } from 'lucide-react';
 import { Search } from 'lucide-react';
 import Searchbar from './Searchbar';
+import ProductsFilter from './ProductsFilter';
 
 const Navbar = () => {
   return (
@@ -66,6 +67,7 @@ const Navbar = () => {
             <div className='block md:hidden'>
                 <p>Mobile nav</p>
                 <Searchbar />
+                <ProductsFilter />
             </div>
         </div>
     </div>       

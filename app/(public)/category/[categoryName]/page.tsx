@@ -94,37 +94,184 @@
 //     </main>
 //   );
 // }
+// The Second part of the category page
+// 'use server'
+// import Image from 'next/image';
+// import React from 'react'
 
-import React from 'react'
+// interface Product {
+//   id:number;
+//   title:string;
+//   price:number;
+//   description:string;
+//   category:string;
+//   images?:string;
+// }
 
+// async function getProducts(): Promise<Product[]> {
+//   const res = await fetch("https://api.escuelajs.co/api/v1/products");
+//   const data = await res.json();
+
+//   return data;
+// }
+
+// async function Category() {
+//   const products = await getProducts();
+//   const rawImage = products.images?.[0];
+//   const imageUrl = rawImage
+//   ? rawImage.startsWith("http")
+//   ? rawImage
+//   : `https://i.imgur.com/${products.images[0]}`
+//   :null
+//   return (
+//     <div className='pt-50'>
+//       <p>Items in each category</p>
+//       {products.map((product) =>(
+//         <div key={product.id}>
+//           <p>{product.title} - {product.price}</p>
+//           {/* <Image src={product.image || null} alt={product.title} width={300} height={300}/> */}
+//           <Image src={imageUrl} alt={product.title} width={300} height={300} />
+//         </div>
+//       ))}
+//     </div>
+//   )
+// }
+
+// export default Category
+
+'use client'
+// import { Input } from '@/components/ui/input'
+// import React from 'react'
+
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+
+// List category
 interface Product {
-  id:number;
-  title:string;
-  price:number;
-  description:string;
-  category:string;
-  image:string;
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image?: string;
 }
 
-async function getProducts(): Promise<Product[]> {
-  const res = await fetch("https://api.escuelajs.co/api/v1/products");
-  const data = await res.json();
+export default function FilterLayout() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  return data;
-}
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-async function Category() {
-  const products = await getProducts();
+  useEffect(() => {
+    async function loadProducts() {
+      try {
+        // const res = await fetch("https://api.escuelajs.co/api/v1/products");
+        const res = await fetch("https://fakestoreapi.com/products");
+        const data = await res.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    loadProducts();
+  }, []);
+
+  const currentSearch = searchParams.get('q') || '';
+  const currentCategory = searchParams.get('category') || 'All';
+
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch = product.title
+      .toLowerCase()
+      .includes(currentSearch.toLowerCase());
+    
+    const matchesCategory = 
+      currentCategory === 'All' || 
+      product.category.toLowerCase() === currentCategory.toLowerCase();
+
+    return matchesSearch && matchesCategory;
+  });
+
+  const updateFilters = (key: string, value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    
+    if (value && value !== 'All') {
+      params.set(key, value);
+    } else {
+      params.delete(key);
+    }
+
+    router.push(`?${params.toString()}`);
+  };
+
+  const categories = ['All', 'Clothes', 'Electronics', 'Furniture', 'Shoes', 'Miscellaneous'];
+
   return (
-    <div className='pt-50'>
-      <p>Items in each category</p>
-      {products.map((product) =>(
-        <div key={product.id}>
-          <p>{product.title} - {product.price}</p>
-        </div>
-      ))}
-    </div>
-  )
-}
+    <div className="max-w-4xl mx-auto p-6 bg-slate-50 rounded-xl shadow-md space-y-6 mt-50">
+      <h1 className="text-2xl font-bold text-slate-800">Categories</h1>
+      
+      <div className="space-y-4">
+        {/* Search Input */}
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={currentSearch}
+          onChange={(e) => updateFilters('q', e.target.value)}
+          className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+        />
 
-export default Category
+        {/* Category List Tabs */}
+        <div className="flex flex-wrap gap-2 pt-2 border-t border-slate-200">
+          {categories.map((cat) => {
+            const isActive = currentCategory.toLowerCase() === cat.toLowerCase();
+            return (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => updateFilters('category', cat)}
+                className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all ${
+                  isActive
+                    ? 'bg-blue-600 text-white shadow-sm'
+                    : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 hover:text-slate-800'
+                }`}
+              >
+                {cat}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Grid Results Area */}
+      {isLoading ? (
+        <div className="text-center py-8 text-slate-500 font-medium animate-pulse">
+          Loading products from API...
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <div 
+                key={product.id} 
+                className="p-4 bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition flex flex-col justify-between"
+              >
+                <div>
+                  <h3 className="font-semibold text-slate-800 line-clamp-1">{product.title}</h3>
+                  <p className="text-sm text-slate-500">{product.category}</p>
+                  <p className="text-xs text-slate-400 mt-1 line-clamp-2">{product.description}</p>
+                </div>
+                <div className="mt-4 text-blue-600 font-bold">${product.price}</div>
+              </div>
+            ))
+          ) : (
+            <div className="col-span-full text-center py-8 text-slate-400">
+              No products match your criteria.
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
