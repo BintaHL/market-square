@@ -7,6 +7,7 @@ const SideNav = () => {
     <div className='flex min-h-100'>
         <div className='w-50 border-r-accent border-r-2 '>
             <Category />
+            <p>Side Nav testing</p>
         </div>
     </div>
   )

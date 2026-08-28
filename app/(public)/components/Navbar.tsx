@@ -3,13 +3,8 @@ import { ChevronDown, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { Heart } from 'lucide-react';
 import { ShoppingCart } from 'lucide-react';
-<<<<<<< HEAD
-import Search from '../search/page'
-// import { Search } from 'lucide-react';
-=======
 import { Search } from 'lucide-react';
-import { ProfileDropdownCustom } from '../profile/profileDropdown';
->>>>>>> f18495c44dfe387d96056c28e35e9d0341e7f70b
+// import { ProfileDropdownCustom } from '../profile/profileDropdown';
 import Searchbar from './Searchbar';
 import ProductsFilter from './ProductsFilter';
 
@@ -68,7 +63,7 @@ const Navbar = () => {
                                 <ShoppingCart size={20}/>
                             </div>
                             {/* Profile Icon */}
-                            <ProfileDropdownCustom />
+                            {/* <ProfileDropdownCustom /> */}
                         </div>
                     </div>
                 </div>
