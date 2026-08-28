@@ -34,7 +34,7 @@ const Product = async () => {
   const products = await getProducts();
 
   return (
-    <div className="w-[80%] mx-auto mt-10">
+    <div className="w-[80%] mx-auto my-20">
 
       <div className="flex flex-col gap-5">
         <div className="flex items-center gap-4">
@@ -147,18 +147,19 @@ const Product = async () => {
           ))}
         </div>
 
-          <div className="w-full h-0.5 bg-card-bg"></div>
+        
       </div>
-        <div className="flex items-center justify-center mt-10">
-          <button className="bg-primary text-white p-2 px-3 rounded-sm hover:text-white hover:bg-green-800">
-            <Link 
-              // href={`/products?category=${categoryName}`} 
-              href={`/allproducts`}
-              className=''>
-             <span>View All Products </span>
-            </Link>
-          </button>
-        </div>
+      <div className="flex items-center justify-center mt-10">
+        <button className="bg-primary text-white p-2 px-3 rounded-sm hover:text-white hover:bg-primary-hover">
+          <Link
+            // href={`/products?category=${categoryName}`} 
+            href={`/allproducts`}
+            className=''>
+            <span>View All Products </span>
+          </Link>
+        </button>
+      </div>
+      <div className="w-full h-0.5 bg-card-bg mt-15"></div>
     </div>
   )
 }

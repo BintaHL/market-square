@@ -87,3 +87,5 @@ export default async function ProductDetailsPage({ params }: PageProps) {
     </div>
   );
 }
+
+

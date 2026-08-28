@@ -9,7 +9,7 @@ import Image from 'next/image';
 const Footer = () => {
   return (
     <div>
-        <div className='h-125 md:h-80 mt-20 bg-[#000000]'>
+        <div className='mt-20 bg-[#000000]'>
             <div className='container flex flex-wrap mx-auto justify-center gap-10 pt-12 shadow-lg'>
                 <div className='text-[#fafafa] w-60'>
                     <h6 className='text-white'>CARTS</h6>
