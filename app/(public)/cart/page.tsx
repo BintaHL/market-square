@@ -36,10 +36,11 @@ export default function CartPage() {
   }
 
   return (
-    <div className="max-w-[80%] mx-auto px-4 py-10 mt-20">
-      <h1 className="text-3xl font-bold mb-8">View Cart</h1>
+    <div className="max-w-[80%] mx-auto px-4 py-10 mt-40">
+      <h1 className="text-3xl font-bold mb-8 text-center justify-center">View Cart</h1>
 
       {/* shadcn Table */}
+      <div className="flex">
       <Card className="mb-6 shadow-none">
         <CardContent className="p-6">
           <Table>
@@ -109,9 +110,11 @@ export default function CartPage() {
             </TableBody>
           </Table>
         </CardContent>
+        
+         <Button  href="/products">Return To Shop</Button>
       </Card>
 
-         <Button href="/products">Return To Shop</Button>
+        
 
       {/* Cart Total Box */}
       <div className="flex justify-end mt-10">
@@ -134,6 +137,7 @@ export default function CartPage() {
               Proceed to Checkout
             </Button>
           </Link>
+        </div>
         </div>
       </div>
     </div>
