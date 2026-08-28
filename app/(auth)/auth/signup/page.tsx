@@ -58,90 +58,90 @@ const Signup = () => {
         return "Something went wrong. Please try again.";
     }
 
-    // const handleSubmit = async (e: React.FormEvent) => {
-    //     e.preventDefault()
-    //     setLoading(true)
-
-
-    //     try {
-    //         await axios.post(
-    //             `https://opt-evacuate-abrasive.ngrok-free.dev/auth/register`, {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //             body: JSON.stringify(formData),
-    //         }
-
-    //         );
-
-    //         setMessage("Registration successful! Proceed to Sigin");
-    //     } catch (error) {
-    //         if (axios.isAxiosError(error)) {
-    //             const detail = error.response?.data?.detail;
-
-    //             if (typeof detail === "string") {
-    //                 setMessage(detail);
-    //             } else if (Array.isArray(detail)) {
-    //                 setMessage(
-    //                     detail
-    //                         .map((item) => item.msg)
-    //                         .filter(Boolean)
-    //                         .join(", ")
-    //                 );
-    //             } else {
-    //                 setMessage(
-    //                     error.response?.data?.message ||
-    //                     "Registration failed. Please check your details."
-    //                 );
-    //             }
-    //         } else {
-    //             setMessage("Something went wrong. Please try again.");
-    //         }
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // }
-
-     const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        if (loading) return
         setLoading(true)
-        setMessage('')
+
 
         try {
-            const apiBase = process.env.NEXT_PUBLIC_API_URL || ''
-            if (!apiBase) throw new Error('NO_API')
-
             await axios.post(
-                `${apiBase}/auth/register`,
-                formData,
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
+                `https://opt-evacuate-abrasive.ngrok-free.dev/auth/register`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            }
+
             );
 
-            setMessage("Registration successful! Redirecting to login...")
-            // router.push('/auth/signin')
-            // return // stop further execution
-        } catch (error: unknown) {
-            // attempt local fallback for testing
-            try {
-                localStorage.setItem('registered_user', JSON.stringify(formData))
-                setMessage("Saved registration locally for testing. Redirecting to login...")
-                router.push('/auth/signin')
-                return
-            } catch {
-                // if localStorage fails, show readable API/error message
-                const userMessage = parseError(error)
-                setMessage(userMessage)
+            setMessage("Registration successful! Proceed to Sigin");
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                const detail = error.response?.data?.detail;
+
+                if (typeof detail === "string") {
+                    setMessage(detail);
+                } else if (Array.isArray(detail)) {
+                    setMessage(
+                        detail
+                            .map((item) => item.msg)
+                            .filter(Boolean)
+                            .join(", ")
+                    );
+                } else {
+                    setMessage(
+                        error.response?.data?.message ||
+                        "Registration failed. Please check your details."
+                    );
+                }
+            } else {
+                setMessage("Something went wrong. Please try again.");
             }
         } finally {
             setLoading(false);
         }
     }
+
+    //  const handleSubmit = async (e: React.FormEvent) => {
+    //     e.preventDefault()
+    //     if (loading) return
+    //     setLoading(true)
+    //     setMessage('')
+
+    //     try {
+    //         const apiBase = process.env.NEXT_PUBLIC_API_URL || ''
+    //         if (!apiBase) throw new Error('NO_API')
+
+    //         await axios.post(
+    //             `${apiBase}/auth/register`,
+    //             formData,
+    //             {
+    //                 headers: {
+    //                     "Content-Type": "application/json",
+    //                 },
+    //             }
+    //         );
+
+    //         setMessage("Registration successful! Redirecting to login...")
+    //         // router.push('/auth/signin')
+    //         // return // stop further execution
+    //     } catch (error: unknown) {
+    //         // attempt local fallback for testing
+    //         try {
+    //             localStorage.setItem('registered_user', JSON.stringify(formData))
+    //             setMessage("Saved registration locally for testing. Redirecting to login...")
+    //             router.push('/auth/signin')
+    //             return
+    //         } catch {
+    //             // if localStorage fails, show readable API/error message
+    //             const userMessage = parseError(error)
+    //             setMessage(userMessage)
+    //         }
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // }
 
 
     return (
