@@ -45,18 +45,16 @@ export default function CartPage() {
         <CardContent className="p-6">
           <Table>
             <TableHeader>
-              {/* <TableRow> */}
               <TableHead className="flex item-center">Product</TableHead>
               <TableHead>Price</TableHead>
               <TableHead className="">Quantity</TableHead>
               <TableHead className="">Subtotal</TableHead>
               <TableHead className="w-[50px]"></TableHead>
-              {/* </TableRow> */}
             </TableHeader>
             <TableBody>
               {cart.map((item) => (
                 <TableRow key={item.id}>
-                  {/* Product: Image + Name */}
+                  {/* Product: Image and Name */}
                   <TableCell>
                     <div className="flex items-center gap-4">
                       <Image
@@ -93,7 +91,7 @@ export default function CartPage() {
                     ${(item.price * item.qty).toFixed(2)}
                   </TableCell>
 
-                  {/* Remove Button */}
+                  {/* Remove Product Button */}
                   <TableCell> 
                   <button 
                     onClick={() => {

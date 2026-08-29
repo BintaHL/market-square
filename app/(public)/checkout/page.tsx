@@ -2,7 +2,7 @@
 import { Button } from "@/app/global-components/buttonsLayout/Button";
 import { useState } from "react";
 import Link from "next/link";
-import { Router } from "next/router";
+// import { Router } from "next/router";
 
 interface CheckoutItem {
   id: number;
