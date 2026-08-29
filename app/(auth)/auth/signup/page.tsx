@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 // testing till API url resolved
 
 export interface SignupData {
-    fullname: string,
+    full_name: string,
     username: string,
     email: string,
     phone_number: string,
@@ -17,7 +17,7 @@ export interface SignupData {
 
 const Signup = () => {
     const [formData, setFormData] = useState({
-        fullname: '',
+        full_name: '',
         username: '',
         email: '',
         phone_number: '',
@@ -32,116 +32,114 @@ const Signup = () => {
     const router = useRouter()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        //     const { name, value } = e.target;
-        // setFormData((prev) => ({ ...prev, [name]: value }));
-        setFormData({ ...formData, [e.target.name]: e.target.value })
+            const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+        // setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 // TO BE REMOVED LATER
-    const parseError = (error: unknown): string => {
-        if (axios.isAxiosError(error)) {
-            const detail = error.response?.data?.detail;
+    // const parseError = (error: unknown): string => {
+    //     if (axios.isAxiosError(error)) {
+    //         const detail = error.response?.data?.detail;
 
-            if (typeof detail === "string") {
-                return detail;
-            } else if (Array.isArray(detail)) {
-                return detail
-                    .map((item) => item.msg)
-                    .filter(Boolean)
-                    .join(", ");
-            } else {
-                return (
-                    error.response?.data?.message ||
-                    "Registration failed. Please check your details."
-                );
-            }
-        }
-        return "Something went wrong. Please try again.";
-    }
-
-    // const handleSubmit = async (e: React.FormEvent) => {
-    //     e.preventDefault()
-    //     setLoading(true)
-
-
-    //     try {
-    //         await axios.post(
-    //             `https://opt-evacuate-abrasive.ngrok-free.dev/auth/register`, {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //             body: JSON.stringify(formData),
-    //         }
-
-    //         );
-
-    //         setMessage("Registration successful! Proceed to Sigin");
-    //     } catch (error) {
-    //         if (axios.isAxiosError(error)) {
-    //             const detail = error.response?.data?.detail;
-
-    //             if (typeof detail === "string") {
-    //                 setMessage(detail);
-    //             } else if (Array.isArray(detail)) {
-    //                 setMessage(
-    //                     detail
-    //                         .map((item) => item.msg)
-    //                         .filter(Boolean)
-    //                         .join(", ")
-    //                 );
-    //             } else {
-    //                 setMessage(
-    //                     error.response?.data?.message ||
-    //                     "Registration failed. Please check your details."
-    //                 );
-    //             }
+    //         if (typeof detail === "string") {
+    //             return detail;
+    //         } else if (Array.isArray(detail)) {
+    //             return detail
+    //                 .map((item) => item.msg)
+    //                 .filter(Boolean)
+    //                 .join(", ");
     //         } else {
-    //             setMessage("Something went wrong. Please try again.");
+    //             return (
+    //                 error.response?.data?.message ||
+    //                 "Registration failed. Please check your details."
+    //             );
     //         }
-    //     } finally {
-    //         setLoading(false);
     //     }
+    //     return "Something went wrong. Please try again.";
     // }
 
-     const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        if (loading) return
         setLoading(true)
-        setMessage('')
+
 
         try {
-            const apiBase = process.env.NEXT_PUBLIC_API_URL || ''
-            if (!apiBase) throw new Error('NO_API')
-
             await axios.post(
-                `${apiBase}/auth/register`,
-                formData,
-                {
+                `https://opt-evacuate-abrasive.ngrok-free.dev/auth/register`, formData, {
                     headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
+                        "Content-Type": "application/json"
+                    }
+                } 
             );
 
-            setMessage("Registration successful! Redirecting to login...")
-            // router.push('/auth/signin')
-            // return // stop further execution
-        } catch (error: unknown) {
-            // attempt local fallback for testing
-            try {
-                localStorage.setItem('registered_user', JSON.stringify(formData))
-                setMessage("Saved registration locally for testing. Redirecting to login...")
-                router.push('/auth/signin')
-                return
-            } catch {
-                // if localStorage fails, show readable API/error message
-                const userMessage = parseError(error)
-                setMessage(userMessage)
+            setMessage("Registration successful! Proceed to Sigin");
+            router.push('/auth/signin')
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                const detail = error.response?.data?.detail;
+
+                if (typeof detail === "string") {
+                    setMessage(detail);
+                } else if (Array.isArray(detail)) {
+                    setMessage(
+                        detail
+                            .map((item) => item.msg)
+                            .filter(Boolean)
+                            .join(", ")
+                    );
+                } else {
+                    setMessage(
+                        error.response?.data?.message ||
+                        "Registration failed. Please check your details."
+                    );
+                }
+            } else {
+                setMessage("Something went wrong. Please try again.");
             }
         } finally {
             setLoading(false);
         }
     }
+
+    //  const handleSubmit = async (e: React.FormEvent) => {
+    //     e.preventDefault()
+    //     if (loading) return
+    //     setLoading(true)
+    //     setMessage('')
+
+    //     try {
+    //         const apiBase = process.env.NEXT_PUBLIC_API_URL || ''
+    //         if (!apiBase) throw new Error('NO_API')
+
+    //         await axios.post(
+    //             `${apiBase}/auth/register`,
+    //             formData,
+    //             {
+    //                 headers: {
+    //                     "Content-Type": "application/json",
+    //                 },
+    //             }
+    //         );
+
+    //         setMessage("Registration successful! Redirecting to login...")
+    //         // router.push('/auth/signin')
+    //         // return // stop further execution
+    //     } catch (error: unknown) {
+    //         // attempt local fallback for testing
+    //         try {
+    //             localStorage.setItem('registered_user', JSON.stringify(formData))
+    //             setMessage("Saved registration locally for testing. Redirecting to login...")
+    //             router.push('/auth/signin')
+    //             return
+    //         } catch {
+    //             // if localStorage fails, show readable API/error message
+    //             const userMessage = parseError(error)
+    //             setMessage(userMessage)
+    //         }
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // }
 
 
     return (
@@ -164,10 +162,10 @@ const Signup = () => {
 
                             <input
                                 type="text"
-                                name="fullname"
+                                name="full_name"
                                 placeholder="Full Name"
                                 className="w-full h-6 border-b outline-none"
-                                value={formData.fullname}
+                                value={formData.full_name}
                                 onChange={handleChange}
                                 required
                             />
