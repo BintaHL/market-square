@@ -5,9 +5,23 @@ import {
   Star,
   StarHalf,
 } from "lucide-react"
-import { Product } from "../types/product";
 import Link from "next/link";
 import Image from "next/image";
+
+interface Product {
+    product?: Product;
+
+    id?: string | number;
+    image?: string;
+    imageAlt?: string;
+    name?: string;
+    price?: number;
+    reviews?: number;
+    rating?: number;
+    badge?: string;
+    badgeColor?: string;
+    onAddToCart?: (id: string | number) => void;
+}
 
 interface ProductCardProps {
   product: Product;

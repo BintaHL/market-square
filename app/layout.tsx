@@ -1,8 +1,6 @@
-// app/layout.tsx
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { AuthProvider } from "./(auth)/auth/context/AuthContext";
 
 // Body / Price font
 const inter = Inter({
@@ -24,7 +22,8 @@ export const metadata: Metadata = {
 };
 
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+
   return (
     <html
       lang="en"
@@ -32,9 +31,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
           
-        <AuthProvider>
+     
           {children}
-        </AuthProvider>
+      
       </body>
     </html>
   );
