@@ -28,14 +28,13 @@ async function CategoryItems (): Promise<Products[]> {
 export default async function Category(){
   const allProducts = await CategoryItems();
 
-  //an array of just the category strings,Set to filter unique values
   const uniqueCategories = Array.from(new Set(allProducts.map(item => item.category)));
 
   return (
     <div>
         <div className='mx-auto mt-20'>
           <ul className='pt-10'>
-          {/* Map over unique categories string array*/}
+          {/* Mapping unique categories string array*/}
           {uniqueCategories.map((categoryName, index) => {
               return (
                   <li key={index} className='capitalize text-sm pb-6'>

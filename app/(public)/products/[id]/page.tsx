@@ -3,6 +3,7 @@ import AddToCartButton from "./component/AddToCartButton"; // <-- import the but
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Button } from '@/app/global-components/buttonsLayout/Button';
 
 export interface Product {
   id: number;
@@ -70,15 +71,15 @@ export default async function ProductDetailsPage({ params }: PageProps) {
           </div>
         </div>
         <div className='flex gap-5'>
-          <button className='mt-10 bg-primary py-2 px-4 rounded-sm'>
-          <Link href="/allproducts" className='text-white'>Back to Products</Link>
-          </button>
+          {/* <Button className='mt-21 bg-primary rounded-sm'>
+          <Link href="/shop" className='text-white'>Back to Products</Link>
+          </Button> */}
 
            {/* <AddToCartButton product={product} /> */}
           {/* <button className='mt-10 bg-primary py-2 px-4 rounded-sm'>
             <Link href="/cart" className='text-white'>Add to Cart</Link>
           </button> */}
-                  <div className="mt-6">
+          <div className="mt-6">
             <AddToCartButton product={product} />
           </div>
         </div>

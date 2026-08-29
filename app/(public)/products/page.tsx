@@ -153,7 +153,7 @@ const Product = async () => {
         <button className="bg-primary text-white p-2 px-3 rounded-sm hover:text-white hover:bg-primary-hover">
           <Link
             // href={`/products?category=${categoryName}`} 
-            href={`/allproducts`}
+            href={`/shop`}
             className=''>
             <span>View All Products </span>
           </Link>

@@ -7,15 +7,15 @@ import { ArrowRightIcon } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <div className='min-h-screen w-full mt-120 md:mt-35'>
+    <div className='w-full mt-35 min-h-80vh'>
         <div className='container flex justify-between mx-auto'>
-            <div className='w-full flex flex-col md:flex-row justify-between gap-10'>
-                <div className='hidden md:block'>
+            <div className='w-full flex flex-row md:flex-row justify-between gap-10'>
+                <div className=''>
                     <SideNav />
                 </div>
                 <div className='mt-10'>
                     <main className='flex-1 h-87.5 items-center justify-center'>
-                        <div className='bg-black text-white py-10 px-10 max-w-5xl w-full mx-auto'>
+                        <div className='bg-black text-white py-10 px-10 max-w-5xl w-full mx-auto flex flex-col'>
                             <div className='flex items-center'>
                                 <div className='flex flex-col gap-7'>
                                     <div className='flex gap-4'>
