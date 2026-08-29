@@ -17,16 +17,29 @@ interface FakeStoreProduct {
 }
 
 async function getProducts(): Promise<FakeStoreProduct[]> {
-  try {
-    const res = await axios.get("https://fakestoreapi.com/products");
-    const data = res.data;
+  // try {
+    const res = await axios.get<FakeStoreProduct[]>(
+      "https://fakestoreapi.com/products"
+    );
 
-    return data
+    const data = res.data
 
-  } catch (error) {
-    console.error("Failed to Fetch Data", error);
-    return [];
-  }
+    console.log("FakeStore status:", res.status);
+    console.log("FakeStore products:", res.data);
+
+    return data;
+//   } catch (error) {
+//     if (axios.isAxiosError(error)) {
+//       console.error("Axios message:", error.message);
+//       console.error("Axios code:", error.code);
+//       console.error("Axios status:", error.response?.status);
+//       console.error("Axios data:", error.response?.data);
+//     } else {
+//       console.error("Unknown error:", error);
+//     }
+
+//     throw error;
+//   }
 }
 
 
@@ -147,7 +160,7 @@ const Product = async () => {
           ))}
         </div>
 
-        
+
       </div>
       <div className="flex items-center justify-center mt-10">
         <button className="bg-primary text-white p-2 px-3 rounded-sm hover:text-white hover:bg-primary-hover">
