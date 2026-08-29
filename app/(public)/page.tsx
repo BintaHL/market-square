@@ -4,8 +4,8 @@ import BeforeFooter from "../(public)/components/BeforeFooter"
 import Hero from "../(public)/components/Hero"
 import Product from "./products/page"
 import CustomCarousel from '../global-components/carousel/Carousel'
-import SelectedCategory from './products/components/selectedCategory'
 import OurProduct from './products/vendoraProducts/page'
+import CategoryBanner from './products/components/CategoryBanner'
 
 const Home = () => {
   return (
@@ -14,7 +14,7 @@ const Home = () => {
       <Hero />   
       <Product />
       <CustomCarousel />
-      <SelectedCategory />
+      <CategoryBanner />
       <OurProduct />
       <BeforeFooter BeforeFooterData={BeforeFooterData}/>
     </div>

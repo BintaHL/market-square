@@ -16,7 +16,7 @@ export interface SignupData {
 }
 
 const Signup = () => {
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<SignupData>({
         full_name: '',
         username: '',
         email: '',
@@ -61,11 +61,13 @@ const Signup = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
-
+        
+    
 
         try {
+            const baseAPI = process.env.NEXT_PUBLIC_API_URL
             await axios.post(
-                `https://opt-evacuate-abrasive.ngrok-free.dev/auth/register`, formData, {
+                `${baseAPI}/auth/register`, formData, {
                     headers: {
                         "Content-Type": "application/json"
                     }
