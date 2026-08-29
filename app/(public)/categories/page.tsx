@@ -1,13 +1,79 @@
-import Link from 'next/link';
+"use client";
 
-async function getCategories(): Promise<string[]> {
-  const res = await fetch('https://fakestoreapi.com/products/categories');
-  if (!res.ok) throw new Error('Failed to fetch categories');
-  return res.json();
-}
+import axios from "axios";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-export default async function CategoriesPage() {
-  const categories = await getCategories();
+const CategoriesPage = () => {
+  const [categories, setCategories] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const getCategories = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+
+        const res = await axios.get<string[]>(
+          "https://fakestoreapi.com/products/categories"
+        );
+
+        console.log("Categories status:", res.status);
+        console.log("Categories:", res.data);
+
+        setCategories(res.data);
+      } catch (error) {
+        console.error("Failed to Fetch Categories", error);
+        setError("Failed to load categories. Please try again.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    getCategories();
+  }, []);
+
+  // Loading State
+  if (isLoading) {
+    return (
+      <main className="min-h-screen py-12 px-4 sm:px-6 lg:px-0">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="h-8 w-48 bg-gray-200 rounded animate-pulse mx-auto mb-8" />
+
+          <div className="flex flex-col gap-4 pr-4">
+            {[...Array(4)].map((_, index) => (
+              <div
+                key={index}
+                className="flex items-center justify-between p-2"
+              >
+                <div className="h-5 w-40 bg-gray-200 rounded animate-pulse" />
+                <div className="h-6 w-6 bg-gray-200 rounded animate-pulse" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  // Error State
+  if (error) {
+    return (
+      <main className="min-h-screen py-12 px-4 sm:px-6 lg:px-0">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-red-500 font-medium mb-4">{error}</p>
+
+          <button
+            onClick={() => window.location.reload()}
+            className="bg-primary text-white px-4 py-2 rounded-sm hover:bg-primary-hover"
+          >
+            Try Again
+          </button>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen py-12 px-4 sm:px-6 lg:px-0">
@@ -15,24 +81,20 @@ export default async function CategoriesPage() {
         <h3 className="text-gray-800 tracking-tight mb-4 text-nowrap">
           Shopping category
         </h3>
-        {/* <p className="text-gray-500 mb-12">
-          Select a category to view its curated collection of products.
-        </p> */}
 
-        {/* Categories Link Grid */}
-        <div className="flex flex-col gap-4 sm:grid-cols-2 pr-4">
-        {/* <div className="grid grid-cols-1 gap-4 sm:grid-cols-2"></div> */}
+        {/* Categories Link List */}
+        <div className="flex flex-col gap-4 pr-4">
           {categories.map((category) => (
             <Link
               key={category}
-              // URL encode the category name to handle special characters like spaces or punctuation safely
               href={`/categories/${encodeURIComponent(category)}`}
               className="flex items-center justify-between p-2 hover:border-b-2 hover:border-b-primary hover:text-primary transition-all duration-200 group text-left"
             >
               <span className="font-semibold capitalize text-gray-800">
                 {category}
               </span>
-              <span className="text-xl text-gray-400 hover:text-primary transform group-hover:translate-x-1 transition-transform">
+
+              <span className="text-xl text-gray-400 group-hover:text-primary transform group-hover:translate-x-1 transition-transform">
                 &rarr;
               </span>
             </Link>
@@ -41,4 +103,6 @@ export default async function CategoriesPage() {
       </div>
     </main>
   );
-}
+};
+
+export default CategoriesPage;
