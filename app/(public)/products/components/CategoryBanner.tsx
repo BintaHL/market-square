@@ -113,7 +113,7 @@ const CategoryBanner = () => {
                                     <br />
                                     <Button href="/cart" className='bg-success! w-40! text-nowrap'>Buy Now!</Button>
                                 </div>
-                                <div className="max-w-[50%] flex items-center justify-center">
+                                <div className="max-w-[50%] flex items-center justify-center text-center">
                                     <Image src={product.image} alt='Hero Image' width={500} height={50} className='w-70 h-[30%]' />
                                 </div>
 

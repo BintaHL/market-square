@@ -145,13 +145,13 @@ const Signup = () => {
 
 
     return (
-        <div className="relative">
+        <div className="relative my-10">
             <div className="w-full md:max-w-[80%] mx-auto px-10 md:px-0">
                 <div className="flex items-center md:justify-between ">
 
-                    <div className="mt-20 hidden w-auto md:block">
-                        <Image src="/images/auth2.png" alt="Sign Logo" width={500} height={20} className="z-10 py-px md:hidden lg:flex" />
-                        <Image src="/images/auth2.png" alt="Sign Logo" width={300} height={20} className="z-10 py-px lg:hidden md:flex" />
+                    <div className=" hidden w-auto md:block">
+                        <Image src="/images/auth2.png" alt="Sign Logo" width={500} height={20} className="z-10 min-h-120 py-px md:hidden lg:flex" />
+                        <Image src="/images/auth2.png" alt="Sign Logo" width={300} height={20} className="z-10 min-h-120 py-px lg:hidden md:flex" />
                     </div>
 
 

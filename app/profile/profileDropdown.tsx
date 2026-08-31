@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { RxAvatar } from "react-icons/rx"
-import { LogOut, Package, PackageX, Star, User } from "lucide-react"
+import { LogOut, Package, User } from "lucide-react"
 
 export function ProfileDropdownCustom() {
   const [isOpen, setIsOpen] = useState(false)

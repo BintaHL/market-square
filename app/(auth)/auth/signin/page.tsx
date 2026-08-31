@@ -3,7 +3,11 @@ import axios from "axios";
 import { Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
+
+import type {
+  AuthErrorResponse,
+} from "@/lib/types/auth";
 
 interface LoginData {
   email: string;
@@ -64,7 +68,7 @@ const Signin = () => {
       });
 
       const response = await axios.post(
-        `${apiBase}/auth/login`,
+        `api/auth/login`,
         new URLSearchParams({
           username: formData.username,
           password: formData.password,
@@ -159,7 +163,7 @@ const Signin = () => {
   }
 
     return (
-      <div className="relative">
+      <div className="relative my-10">
         <div className="w-full md:max-w-[80%] mx-auto px-10 md:px-0">
           <div className="flex items-center md:justify-between md:gap-10 pt-30">
             <div className="bg-[#CBE4E8] mt-20 hidden md:block">
@@ -168,14 +172,14 @@ const Signin = () => {
                 alt="Sign Logo"
                 width={500}
                 height={20}
-                className="z-10 py-px md:hidden lg:block"
+                className="z-10 min-h-120 py-px md:hidden lg:block"
               />
               <Image
                 src="/images/auth2.png"
                 alt="Sign Logo"
                 width={300}
                 height={20}
-                className="z-10 py-px lg:hidden md:block"
+                className="z-10 min-h-120 py-px lg:hidden md:block"
               />
             </div>
 
@@ -231,13 +235,13 @@ const Signin = () => {
                   </button>
                   {/* <Button h className="w-40!"></Button> */}
 
-                  <div className="text-primary text-end">Forgot Password?</div>
+                  <div className="text-primary text-end text-nowrap">Forgot Password?</div>
                 </div>
               </fieldset>
             </form>
           </div>
         </div>
-        <div className="top-40 md:w-100 lg:w-158 h-120 bg-[#CBE4E8] rounded-tr-sm rounded-br-sm -mt-120  hidden md:block"></div>
+        <div className="top-40 md:w-110 lg:w-158 h-120 bg-[#CBE4E8] rounded-tr-sm rounded-br-sm -mt-120  hidden md:block"></div>
       </div>
     );
   };
