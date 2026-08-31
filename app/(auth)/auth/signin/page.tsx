@@ -5,9 +5,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import type {
-  AuthErrorResponse,
-} from "@/lib/types/auth";
 
 interface LoginData {
   email: string;
@@ -68,7 +65,7 @@ const Signin = () => {
       });
 
       const response = await axios.post(
-        `api/auth/login`,
+        `${apiBase}/auth/login`,
         new URLSearchParams({
           username: formData.username,
           password: formData.password,
