@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState("cash");
   const [loading, setLoading] = useState(false);
+  const [orderPlaced, setOrderPlaced] = useState(false); // 1. toggle success screen
   const { cart, clearCart } = useCart();
   const router = useRouter();
 
@@ -20,14 +21,36 @@ export default function CheckoutPage() {
     }
 
     setLoading(true);
-
     await new Promise((resolve) => setTimeout(resolve, 1000)); // fake delay
 
     clearCart();
-    router.push("/order-success");
+    setOrderPlaced(true); // 2. show success instead of router.push
     setLoading(false);
   };
 
+  // 3. SUCCESS SCREEN - merged from OrderSuccess component
+  if (orderPlaced) {
+    return (
+      <div className="text-center py-20 mt-40">
+        <div className="max-w-md mx-auto">
+          <h1 className="text-3xl font-bold mb-4">Order Placed! 🎉</h1>
+          <p className="text-gray-600 mb-6">
+            Thank you. We&apos;ll contact you soon.
+            {paymentMethod === "bank" 
+              ? " Please transfer to Account: 123456789 and send proof on WhatsApp." 
+              : " Pay with cash when your order is delivered."} 
+          </p>
+          {/* <Button 
+            onClick={() => router.push(/"shop")} 
+            className="bg-black"
+          >
+            Continue Shopping
+          </Button> */}
+          <Button  href="/products" className="">Continue Shopping</Button>
+        </div>
+      </div>
+    )
+  }
   return (
     <div className="ml-20 ">
       <div className="mx-auto mt-30">
@@ -147,6 +170,9 @@ export default function CheckoutPage() {
               </form>
             </main>
           </div>
+           {/* <div className="">
+              <button className="bg-red-500">Submit</button>
+            </div> */}
 
           {/* Order Summary*/}
           <div className="w-1/2 mt-40 mr-30 border p-6">
