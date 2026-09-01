@@ -2,19 +2,37 @@
 import { useState } from "react";
 import { useCart } from "@/app/(public)/context/CartContext";
 import { Button } from "@/app/global-components/buttonsLayout/Button";
-// import Image from "next/image";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState("cash");
-  const { cart } = useCart(); // <- ADD THIS
+  const [loading, setLoading] = useState(false);
+  const { cart, clearCart } = useCart();
+  const router = useRouter();
 
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
+
+  const placeOrder = async () => {
+    if (cart.length === 0) {
+      alert("Your cart is empty");
+      return;
+    }
+
+    setLoading(true);
+
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // fake delay
+
+    clearCart();
+    router.push("/order-success");
+    setLoading(false);
+  };
 
   return (
     <div className="ml-20 ">
       <div className="mx-auto mt-30">
         <div className="flex justify-between">
-          {/* Billing Details Left */}
+          {/* Billing Details*/}
           <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] lg:grid-cols-[2fr_2fr] gap-5 lg:gap-10 items-start">
             <main className="w-full min-w-0 my-10">
               <form className="w-full">
@@ -23,7 +41,7 @@ export default function CheckoutPage() {
                 <div className="grid grid-cols-1 gap-4 w-full">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex flex-col min-w-0 ">
-                      {/* Name */}
+    
                       <label htmlFor="firstName" className="text-dark-muted">
                         Full Name <span className="text-primary">*</span>
                       </label>
@@ -34,7 +52,7 @@ export default function CheckoutPage() {
                         className="bg-card-bg text-sm w-full min-w-0 h-11 outline-dark-muted px-3"
                       />
                     </div>
-                    {/* Email address  */}
+                   
                     <div className="flex flex-col gap-2 min-w-0">
                       <label htmlFor="town_city" className="text-dark-muted">
                         Email Address
@@ -47,7 +65,7 @@ export default function CheckoutPage() {
                       />
                     </div>
                   </div>
-                  {/* comapany  */}
+                  
                   <div className="flex flex-col gap-2 min-w-0 ">
                     <label htmlFor="CompanyName" className="text-dark-muted">
                       Company Name
@@ -59,7 +77,7 @@ export default function CheckoutPage() {
                       className="bg-card-bg text-sm w-full min-w-0 h-11 outline-dark-muted px-3"
                     />
                   </div>
-                  {/* Street Address  */}
+                 
                   <div className="flex flex-col gap-2 min-w-0">
                     <label htmlFor="Street Address" className="text-dark-muted">
                       Street Address
@@ -72,7 +90,7 @@ export default function CheckoutPage() {
                       className="bg-card-bg text-sm w-full min-w-0 h-11 outline-dark-muted px-3"
                     />
                   </div>
-                  {/* Detailed location */}
+                 
                   <div className="flex flex-col gap-2 min-w-0">
                     <label htmlFor="address" className="text-dark-muted">
                       Apartment, floor, etc (optional)
@@ -86,7 +104,7 @@ export default function CheckoutPage() {
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Town / City  */}
+                   
                     <div className="flex flex-col gap-2 min-w-0">
                       <label htmlFor="town_city" className="text-dark-muted">
                         Town/City
@@ -99,8 +117,7 @@ export default function CheckoutPage() {
                         className="bg-card-bg text-sm w-full min-w-0 h-11 outline-dark-muted px-3"
                       />
                     </div>
-                    {/* Phone contact number  */}
-
+                    
                     <div className="flex flex-col gap-2 min-w-0">
                       <label htmlFor="town_city" className="text-dark-muted">
                         Phone Number
@@ -115,7 +132,7 @@ export default function CheckoutPage() {
                     </div>
                   </div>
                 </div>
-                {/* Actions */}
+                
                 <div className="flex items-center gap-2 min-w-0">
                   <input
                     type="checkbox"
@@ -131,33 +148,32 @@ export default function CheckoutPage() {
             </main>
           </div>
 
-          {/* Order Summary Right */}
+          {/* Order Summary*/}
           <div className="w-1/2 mt-40 mr-30 border p-6">
             <h2 className="text-xl font-bold mb-8">Order Summary</h2>
 
-            {/* ADD THIS: Map cart items */}
+            {/* Mapping of cart items */}
             <div className="space-y-5">
               {cart.length === 0 ? (
                 <p>Your cart is empty</p>
               ) : (
                 cart.map((item) => (
                   <div key={item.id} className="flex justify-between mb-2">
-                    {/* 1. Product Image
-                <div className="relative w-16 h-16 flex-shrink-0">
-                  <Image 
-                    src={item.image} 
-                    alt={item.name}
-                    fill
-                    className="object-cover rounded-md"
-                  />
-                </div>
+                    <div className="relative w-16 h-16">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        className="object-cover rounded"
+                      />
+                    </div>
 
-                
-                <div className="flex-1"> */}
-                    <p>
-                      {item.name} x {item.qty}
-                    </p>
-                    <p>${(item.price * item.qty).toFixed(2)}</p>
+                    <div className="flex-1">
+                      <p>
+                        {item.name} x {item.qty}
+                      </p>
+                      <p>${(item.price * item.qty).toFixed(2)}</p>
+                    </div>
                   </div>
                 ))
               )}
@@ -178,7 +194,6 @@ export default function CheckoutPage() {
 
                 {/* Payment Methods */}
                 <div className="mt-7 space-y-5">
-                  {/* Bank */}
                   <label className="flex cursor-pointer items-center gap-3">
                     <input
                       type="radio"
@@ -188,10 +203,9 @@ export default function CheckoutPage() {
                       onChange={() => setPaymentMethod("bank")}
                       className="h-5 w-5 accent-black"
                     />
-
                     <span className="text-sm">Bank</span>
                   </label>
-                  {/* Cash */}
+
                   <label className="flex cursor-pointer items-center gap-3">
                     <input
                       type="radio"
@@ -206,9 +220,12 @@ export default function CheckoutPage() {
                   </label>
                 </div>
 
-                {/* Place Order */}
-                <Button href="" className="mt-6 bg-red-600">
-                  Place Order
+                <Button
+                  onClick={placeOrder}
+                  disabled={loading}
+                  className="mt-6 bg-red-600"
+                >
+                  {loading ? "Placing Order....." : "Place Order"}
                 </Button>
               </div>
             </div>
