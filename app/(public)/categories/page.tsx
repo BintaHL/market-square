@@ -77,10 +77,10 @@ const CategoriesPage = () => {
 
   return (
     <main className="min-h-screen py-12 px-4 sm:px-6 lg:px-0">
-      <div className="max-w-4xl mx-auto text-center">
-        <h3 className="text-gray-800 tracking-tight mb-4 text-nowrap">
+      <div className="max-w-4xl mx-auto">
+        <h4 className="text-gray-800 tracking-tight mb-4 text-nowrap pr-2 font-semibold text-2xl">
           Shopping category
-        </h3>
+        </h4>
 
         {/* Categories Link List */}
         <div className="flex flex-col gap-4 pr-4">

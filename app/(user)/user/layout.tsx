@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import "../../globals.css"
 import SideNav from "./component/SideNav";
+
+
+
 // import { Toast } from "@/components/ui/toast";
-import { ThemeProvider } from "./component/providers/ThemeProvider"
+// import { ThemeProvider } from "./component/providers/ThemeProvider"
 
 
 export const metadata: Metadata = {
@@ -13,15 +16,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <div className="flex h-screen w-full overflow-hidden " suppressHydrationWarning> 
-      <ThemeProvider
+      {/* <ThemeProvider
        attribute='class'
        defaultTheme='light'
        enableSystem={true}
-       storageKey='dashboard-theme'>
+       storageKey='dashboard-theme'> */}
         <SideNav />
         <main className="min-h-0 flex-1 overflow-y-auto bg-white">{children}</main>
         {/* <Toast toast={toast} /> */}
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </div>
   );
 }

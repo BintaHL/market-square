@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { SearchIcon } from "lucide-react"
-import ProductTable from './component/products/ProductTable'
+// import ProductTable from './component/products/ProductTable'
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 import {
   Field
@@ -11,9 +11,7 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group"
-import DashboardCard from './component/DashboardCard';
-import UserData from '@/app/(user)/user/component/UserData';
-import CategoriesPage from './component/UserData';
+// import DashboardCard from './component/DashboardCard';
 // import ProtectedRoute from '@/app/(authentication)/components/ProtectedRoute';
 
 const HomePage = () => {
@@ -38,11 +36,8 @@ const HomePage = () => {
         </div>
 
         <div className="flex flex-col px-5 bg-gray-100">
-          {/* <UserData /> */}
-          <CategoriesPage />
-          <div className=''>
-            <ProductTable title='Latest Products' limit={10} /> 
-          </div>
+          {/* <DashboardCard />
+          <ProductTable title='Latest Products' limit={10} /> */}
         </div>
       </div>
     </>
