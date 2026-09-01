@@ -1,4 +1,4 @@
-import { SettingsTabs } from "./components/SettingsTabs.tsx";
+// import { SettingsTabs } from "./components/SettingsTabs.tsx";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
@@ -17,7 +17,7 @@ const Settings = async ({ searchParams }: SettingsPageProps) => {
       </div>
       <div className="px-5 py-4">
         {/* Pass the activeTab from server to the client component */}
-        <SettingsTabs activeTab={activeTab} />
+        {/* <SettingsTabs activeTab={activeTab} /> */}
       </div>
     </div>
   );
