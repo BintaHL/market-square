@@ -4,7 +4,7 @@ import CategoriesPage from '../categories/page'
 
 const SideNav = () => {
   return (
-    <div className='flex md:min-h-100 min-h-[60px]'>
+    <div className='flex md:min-h-100'>
         <div className='border-r-accent border-r-2'>
             {/* <Category /> */}
             <CategoriesPage />

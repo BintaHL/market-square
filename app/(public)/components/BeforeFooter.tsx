@@ -16,6 +16,56 @@ interface BeforeFooterProps{
 const BeforeFooter = ({BeforeFooterData = []}:BeforeFooterProps) => {
   return (
     <div className='container mx-auto mt-20'>
+         <div className="flex items-center justify-center gap-6 mb-20">
+            <div className="flex flex-row divide-gray-400 divide-x gap-5">
+              <div className="pr-8 text-left">
+                <h2 className="font-bold text-3xl mt-5">500+</h2>
+                <p className="text-gray-500 whitespace-nowrap text-[10px]">
+                 Active Sellers in our site
+                </p>
+              </div>
+
+              <div className="pr-8">
+                <h2 className="font-bold text-3xl mt-5">3,000+</h2>
+                <p className="text-gray-500 whitespace-nowrap text-[10px]">
+                  High quality products
+                </p>
+              </div>
+
+              <div>
+                <h2 className="font-bold text-3xl mt-5">45,000+</h2>
+                <p className="text-gray-500 text-[10px]">Active and Happy Customers</p>
+              </div>
+            </div>
+          {/* <Image
+            src="/images/Frame1.png"
+            alt="image"
+            width={100}
+            height={100}
+          />
+
+
+           <Image
+            src="/images/Frame2.png"
+            alt="image"
+            width={100}
+            height={100}
+          />
+
+           <Image
+            src="/images/Frame3.png"
+            alt="image"
+            width={100}
+            height={100}
+          />
+
+           <Image
+            src="/images/Frame4.png"
+            alt="image"
+            width={100}
+            height={100}
+          /> */}
+        </div>
         <div className='flex flex-col md:flex-row justify-center items-center gap-10'>
             {BeforeFooterData?.map((item, index ) =>{
                 return (
