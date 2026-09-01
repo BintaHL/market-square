@@ -2,32 +2,19 @@
 import axios from "axios";
 import { Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
+import { showToast } from "@/app/components/providers/ToastProvider";
+
 
 interface LoginData {
-  email: string;
   username: string;
   password: string;
 }
 
-// helper to convert unknown errors into user-friendly messages TO BE ROMOVED
-// const parseError = (error: unknown): string => {
-//     if (axios.isAxiosError(error)) {
-//         const detail = error.response?.data?.detail;
-
-//         if (typeof detail === "string") return detail;
-//         if (Array.isArray(detail)) return detail.map((item) => item.msg).filter(Boolean).join(", ");
-//         if (typeof error.response?.data?.message === "string") return error.response.data.message;
-//         return "Login failed. Please check your email and password.";
-//     }
-
-//     return "Something went wrong. Please try again.";
-// };
-
 const Signin = () => {
   const [formData, setFormData] = useState<LoginData>({
-    email: "",
     username: "",
     password: "",
   });
@@ -38,104 +25,68 @@ const Signin = () => {
 
   const router = useRouter();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
+
+    if (loading) return;
+
     setLoading(true);
     setMessage("");
 
-    // 1. Double-check your data is actually there before sending
-    console.log("Sending this data to backend:", formData);
-
     try {
-        const response = await axios.post(
-            `https://opt-evacuate-abrasive.ngrok-free.dev/auth/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({  formData
-            })
+      const response = await axios.post(
+        "/api/auth/login",
+        {
+          username: formData.username,
+          password: formData.password,
         }
+      );
 
-        );
+      console.log("LOGIN RESPONSE:", response.data);
 
-        console.log("LOGIN RESPONSE:", response.data);
+      showToast("Login successful!", "success");
 
-        setMessage("Login successful!");
-        router.push('/')
+      router.push("/");
+      router.refresh();
 
-        // Handle token/user data here
-    }
-    catch (error) {
-        if (axios.isAxiosError(error)) {
-            const detail = error.response?.data?.detail;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const detail = error.response?.data?.detail;
 
-            if (typeof detail === "string") {
-                setMessage(detail);
-            } else if (Array.isArray(detail)) {
-                setMessage(
-                    detail
-                        .map((item) => item.msg)
-                        .filter(Boolean)
-                        .join(", ")
-                );
-            } else if (typeof error.response?.data?.message === "string") {
-                setMessage(error.response.data.message);
-            } else {
-                setMessage("Login failed. Please check your email and password.");
-            }
+        if (typeof detail === "string") {
+          showToast(detail, "error");
 
-            console.log("STATUS:", error.response?.status);
-            console.log("ERROR:", error.response?.data);
+        } else if (Array.isArray(detail)) {
+          const message = detail
+            .map((item) => item.msg)
+            .filter(Boolean)
+            .join(", ");
+          showToast(message, "error");
+
         } else {
-            setMessage("Something went wrong. Please try again.");
+          showToast(
+            error.response?.data?.message ||
+            "Login failed. Please check your username and password.",
+            "error"
+          );
         }
+
+      } else if (error instanceof Error) {
+        showToast(error.message, "error");
+
+      } else {
+        showToast("Something went wrong. Please try again.", "error");
+      }
+
+    } finally {
+      setLoading(false);
     }
-
-    // temporary till url resolved
-    // catch (error: unknown) {
-    //     // attempt local fallback for testing
-    //     try {
-    //         localStorage.setItem('registered_user', JSON.stringify(formData))
-    //         setMessage("Saved registration locally for testing. Redirecting to login...")
-    //         router.push('/')
-    //         return
-    //     } catch {
-    //         // if localStorage fails, show readable API/error message
-    //         const userMessage = parseError(error)
-    //         setMessage(userMessage)
-    //     }
-    //     finally {
-    //         setLoading(false);
-    //     }
-    // // }
-
-    // alternative trial
-    // try {
-    //   const response = await fetch(
-    //     "https://opt-evacuate-abrasive.ngrok-free.dev/auth/login",
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       // ⚠️ Crucial Step: Send exactly what FastAPI expects
-    //       body: JSON.stringify({
-    //         username: formData.username || formData.email, // 👈 If users log in with email, change this to formData.email
-    //         password: formData.password,
-    //       }),
-    //     },
-    // //   );
-
-    //   const data = await response.json();
-    //   console.log(data);
-    // } catch (error) {
-    //   console.error(error);
-    // }
   };
 
   return (
-    <div className="relative">
+    <div className="relative my-10">
       <div className="w-full md:max-w-[80%] mx-auto px-10 md:px-0">
         <div className="flex items-center md:justify-between md:gap-10 pt-30">
           <div className="bg-[#CBE4E8] mt-20 hidden md:block">
@@ -144,14 +95,14 @@ const Signin = () => {
               alt="Sign Logo"
               width={500}
               height={20}
-              className="z-10 py-px md:hidden lg:block"
+              className="z-10 min-h-120 py-px md:hidden lg:block"
             />
             <Image
               src="/images/auth2.png"
               alt="Sign Logo"
               width={300}
               height={20}
-              className="z-10 py-px lg:hidden md:block"
+              className="z-10 min-h-120 py-px lg:hidden md:block"
             />
           </div>
 
@@ -206,14 +157,17 @@ const Signin = () => {
                   {loading ? "Logging..." : "Log In"}
                 </button>
                 {/* <Button h className="w-40!"></Button> */}
-
-                <div className="text-primary text-end">Forgot Password?</div>
+                <Link href="/auth/forgot-password" className="text-primary text-end text-nowrap">Forgot Password?</Link>
               </div>
+
+              <p style={{ marginTop: "16px" }}>
+                 <Link href="/auth/signup" className="underline underline-offset-8 text-dark-muted">Signup</Link> to create an account.
+              </p>
             </fieldset>
           </form>
         </div>
       </div>
-      <div className="top-40 md:w-100 lg:w-158 h-120 bg-[#CBE4E8] rounded-tr-sm rounded-br-sm -mt-120  hidden md:block"></div>
+      <div className="top-40 md:w-110 lg:w-158 h-120 bg-[#CBE4E8] rounded-tr-sm rounded-br-sm -mt-120  hidden md:block"></div>
     </div>
   );
 };

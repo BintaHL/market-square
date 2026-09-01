@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import ToastProvider from "@/app/components/providers/ToastProvider";
 
 // Body / Price font
 const inter = Inter({
@@ -21,19 +22,15 @@ export const metadata: Metadata = {
   description: "Curated high-end goods",
 };
 
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-
   return (
     <html
       lang="en" suppressHydrationWarning
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-          
-     
-          {children}
-      
+        <ToastProvider />
+        {children}
       </body>
     </html>
   );
