@@ -1,9 +1,11 @@
-import React from 'react'
-
-const AdminHome = () => {
+export default function AdminPage() {
   return (
-    <div>page</div>
-  )
-}
+    <main>
+      <h1>Admin Dashboard</h1>
 
-export default AdminHome
+      <p>
+        Only administrators can access this page.
+      </p>
+    </main>
+  );
+}

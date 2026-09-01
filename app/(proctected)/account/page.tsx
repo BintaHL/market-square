@@ -11,16 +11,16 @@ const ProfileAccount = () => {
         {
             title: "Manage My Account",
             links: [
-                { label: "My Profile", href: "/account/profile" },
-                { label: "Address Book", href: "/account/address-book" },
-                { label: "My Payment Options", href: "/account/payment-options" },
+                { label: "My Profile", href: "/profile" },
+                { label: "Address Book", href: "/address-book" },
+                { label: "My Payment Options", href: "/payment-options" },
             ],
         },
         {
             title: "Manage Orders",
             links: [
-                { label: "My Returns", href: "/account/returns" },
-                { label: "My Cancellations", href: "/account/cancellations" },
+                { label: "My Returns", href: "returns" },
+                { label: "My Cancellations", href: "/review" },
             ],
         },
     ];

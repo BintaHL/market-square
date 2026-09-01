@@ -1,19 +1,26 @@
 import { redirect } from "next/navigation";
-import { getCurrentUser } from "@/app/lib/auth";
+import { isLoggedIn } from "@/app/lib/auth";
+import { getCurrentUser } from "@/app/lib/user";
+
+export const dynamic = "force-dynamic";
 
 export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const user = await getCurrentUser();
+  const loggedIn = await isLoggedIn();
 
-  // Not logged in
-  if (!user) {
-    redirect("/authenticate/signin");
+  if (!loggedIn) {
+    redirect("/auth/signin");
   }
 
-  // Logged in but NOT admin
+  const user = await getCurrentUser();
+
+  if (!user) {
+    redirect("/");
+  }
+
   if (user.role !== "admin") {
     redirect("/");
   }

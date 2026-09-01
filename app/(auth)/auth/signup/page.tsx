@@ -6,6 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { showToast } from "@/app/components/providers/ToastProvider";
 
 export interface SignupData {
   full_name: string;
@@ -57,6 +58,7 @@ const Signup = () => {
         formData
       );
 
+      showToast("Account created successfully!", "success");
       router.push("/auth/signin");
 
     } catch (error: unknown) {
@@ -66,30 +68,25 @@ const Signup = () => {
         const detail = error.response?.data?.detail;
 
         if (typeof detail === "string") {
-          setMessage(detail);
+          showToast(detail, "error");
 
         } else if (Array.isArray(detail)) {
-
-          setMessage(
-            detail
-              .map((item) => item.msg)
-              .filter(Boolean)
-              .join(", ")
-          );
+          const message = detail
+            .map((item) => item.msg)
+            .filter(Boolean)
+            .join(", ");
+          showToast(message, "error");
 
         } else {
-
-          setMessage(
+          showToast(
             error.response?.data?.message ||
-            "Registration failed. Please check your details."
+            "Registration failed. Please check your details.",
+            "error"
           );
         }
 
       } else {
-
-        setMessage(
-          "Something went wrong. Please try again."
-        );
+        showToast("Something went wrong. Please try again.", "error");
       }
 
     } finally {
@@ -189,7 +186,7 @@ const Signup = () => {
                         </fieldset>
 
                         <p style={{ marginTop: "16px" }}>
-                            Already have an account? <Link href="/auth/signin">Login</Link>
+                            Already have an account? <Link href="/auth/signin" className="underline underline-offset-8 text-dark-muted">Login</Link>
                         </p>
                     </form>
 

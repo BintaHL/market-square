@@ -1,51 +1,54 @@
 import { NextResponse } from "next/server";
+
 import {
   getRefreshToken,
   setAuthCookies,
-  clearAuthCookies,
 } from "@/app/lib/auth";
 
-interface RefreshResponse {
-  access_token: string;
-  refresh_token?: string;
-  token_type: string;
-}
-
 export async function POST() {
-  const refreshToken = await getRefreshToken();
-
-  if (!refreshToken) {
-    return NextResponse.json(
-      { message: "No refresh token" },
-      { status: 401 }
-    );
-  }
-
   try {
-    const response = await fetch(
-      `${process.env.BACKEND_API_URL}/refresh`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          refresh_token: refreshToken,
-        }),
-      }
-    );
+    const refreshToken = await getRefreshToken();
 
-    if (!response.ok) {
-      await clearAuthCookies();
-
+    if (!refreshToken) {
       return NextResponse.json(
-        { message: "Session expired" },
-        { status: 401 }
+        {
+          message: "No refresh token",
+        },
+        {
+          status: 401,
+        }
       );
     }
 
-    const data: RefreshResponse =
-      await response.json();
+    const response = await fetch(
+      `${process.env.API_URL}/auth/refresh`,
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          refresh_token: refreshToken,
+        }),
+
+        cache: "no-store",
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      return NextResponse.json(
+        {
+          message: "Session expired",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
 
     await setAuthCookies(
       data.access_token,
@@ -55,10 +58,18 @@ export async function POST() {
     return NextResponse.json({
       success: true,
     });
-  } catch {
+
+  } catch (error) {
+
+    console.error("REFRESH ERROR:", error);
+
     return NextResponse.json(
-      { message: "Unable to refresh session" },
-      { status: 500 }
+      {
+        message: "Unable to refresh session",
+      },
+      {
+        status: 500,
+      }
     );
   }
 }
