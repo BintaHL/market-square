@@ -2,6 +2,7 @@ import React from 'react'
 import { ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { Search } from 'lucide-react';
+import ProfileIcon from "@/app/components/auth/ProfileIcon";
 
 
 const AuthNav = () => {
@@ -57,6 +58,7 @@ const AuthNav = () => {
                             </div>
                         </div>
                     </div>
+                    <ProfileIcon />
                 </div>
             </div>
         </div>

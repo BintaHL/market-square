@@ -1,65 +1,72 @@
 import { NextResponse } from "next/server";
+import { setAuthCookies } from "@/app/lib/auth";
 
-import {
-  setAuthCookies,
-} from "@/lib/auth";
+interface LoginRequest {
+  username: string;
+  password: string;
+}
 
-import type {
-  AuthTokens,
-  LoginRequest,
-  AuthErrorResponse,
-} from "@/lib/types/auth";
+interface LoginResponse {
+  access_token: string;
+  refresh_token: string;
+  token_type: string;
+}
 
-export async function POST(
-  request: Request
-): Promise<NextResponse> {
+export async function POST(request: Request) {
   try {
     const body: LoginRequest = await request.json();
 
+    const apiBase = process.env.API_URL;
+
+    if (!apiBase) {
+      return NextResponse.json(
+        { message: "API URL is not configured" },
+        { status: 500 }
+      );
+    }
+
     const response = await fetch(
-      `${process.env.BACKEND_API_URL}/login`,
+      `${apiBase}/auth/login`,
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+          "Content-Type":
+            "application/x-www-form-urlencoded",
         },
-        body: JSON.stringify(body),
+        body: new URLSearchParams({
+          username: body.username,
+          password: body.password,
+        }),
         cache: "no-store",
       }
     );
 
-    if (!response.ok) {
-      const errorData =
-        (await response.json()) as AuthErrorResponse;
+    const data = await response.json();
 
-      return NextResponse.json(
-        {
-          message:
-            errorData.message ||
-            "Invalid email or password.",
-        },
-        {
-          status: response.status,
-        }
-      );
+    if (!response.ok) {
+      return NextResponse.json(data, {
+        status: response.status,
+      });
     }
 
-    const data: AuthTokens =
-      await response.json();
+    const tokens: LoginResponse = data;
 
     await setAuthCookies(
-      data.access_token,
-      data.refresh_token
+      tokens.access_token,
+      tokens.refresh_token
     );
 
     return NextResponse.json({
       success: true,
+      message: "Login successful",
     });
-  } catch {
+
+  } catch (error) {
+    console.error("LOGIN ERROR:", error);
+
     return NextResponse.json(
       {
-        message: "Unable to login.",
+        message: "Something went wrong",
       },
       {
         status: 500,

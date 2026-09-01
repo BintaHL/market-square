@@ -1,147 +1,102 @@
 "use client";
-import Link from 'next/link';
+
+import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import axios from "axios";
-import { Eye, EyeOff } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-// testing till API url resolved
+import { Eye, EyeOff } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export interface SignupData {
-    full_name: string,
-    username: string,
-    email: string,
-    phone_number: string,
-    password: string
+  full_name: string;
+  username: string;
+  email: string;
+  phone_number: string;
+  password: string;
 }
 
 const Signup = () => {
-    const [formData, setFormData] = useState<SignupData>({
-        full_name: '',
-        username: '',
-        email: '',
-        phone_number: '',
-        password: ''
-    })
+  const [formData, setFormData] = useState<SignupData>({
+    full_name: "",
+    username: "",
+    email: "",
+    phone_number: "",
+    password: "",
+  });
 
-    const [message, setMessage] = useState('')
-    const [loading, setLoading] = useState(false)
-    const [showPassword, setShowPassword] = useState(false);
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-    // moved hook to top-level of component
-    const router = useRouter()
+  const router = useRouter();
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-            const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-        // setFormData({ ...formData, [e.target.name]: e.target.value })
-    }
-// TO BE REMOVED LATER
-    // const parseError = (error: unknown): string => {
-    //     if (axios.isAxiosError(error)) {
-    //         const detail = error.response?.data?.detail;
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { name, value } = e.target;
 
-    //         if (typeof detail === "string") {
-    //             return detail;
-    //         } else if (Array.isArray(detail)) {
-    //             return detail
-    //                 .map((item) => item.msg)
-    //                 .filter(Boolean)
-    //                 .join(", ");
-    //         } else {
-    //             return (
-    //                 error.response?.data?.message ||
-    //                 "Registration failed. Please check your details."
-    //             );
-    //         }
-    //     }
-    //     return "Something went wrong. Please try again.";
-    // }
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        setLoading(true)
-        
-    
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault();
 
-        try {
-            const baseAPI = process.env.NEXT_PUBLIC_API_URL
-            await axios.post(
-                `${baseAPI}/auth/register`, formData, {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                } 
-            );
+    if (loading) return;
 
-            setMessage("Registration successful! Proceed to Sigin");
-            router.push('/auth/signin')
-        } catch (error) {
-            if (axios.isAxiosError(error)) {
-                const detail = error.response?.data?.detail;
+    setLoading(true);
+    setMessage("");
 
-                if (typeof detail === "string") {
-                    setMessage(detail);
-                } else if (Array.isArray(detail)) {
-                    setMessage(
-                        detail
-                            .map((item) => item.msg)
-                            .filter(Boolean)
-                            .join(", ")
-                    );
-                } else {
-                    setMessage(
-                        error.response?.data?.message ||
-                        "Registration failed. Please check your details."
-                    );
-                }
-            } else {
-                setMessage("Something went wrong. Please try again.");
-            }
-        } finally {
-            setLoading(false);
+    try {
+      await axios.post(
+        "/api/auth/register",
+        formData
+      );
+
+      router.push("/auth/signin");
+
+    } catch (error: unknown) {
+
+      if (axios.isAxiosError(error)) {
+
+        const detail = error.response?.data?.detail;
+
+        if (typeof detail === "string") {
+          setMessage(detail);
+
+        } else if (Array.isArray(detail)) {
+
+          setMessage(
+            detail
+              .map((item) => item.msg)
+              .filter(Boolean)
+              .join(", ")
+          );
+
+        } else {
+
+          setMessage(
+            error.response?.data?.message ||
+            "Registration failed. Please check your details."
+          );
         }
+
+      } else {
+
+        setMessage(
+          "Something went wrong. Please try again."
+        );
+      }
+
+    } finally {
+
+      setLoading(false);
     }
-
-    //  const handleSubmit = async (e: React.FormEvent) => {
-    //     e.preventDefault()
-    //     if (loading) return
-    //     setLoading(true)
-    //     setMessage('')
-
-    //     try {
-    //         const apiBase = process.env.NEXT_PUBLIC_API_URL || ''
-    //         if (!apiBase) throw new Error('NO_API')
-
-    //         await axios.post(
-    //             `${apiBase}/auth/register`,
-    //             formData,
-    //             {
-    //                 headers: {
-    //                     "Content-Type": "application/json",
-    //                 },
-    //             }
-    //         );
-
-    //         setMessage("Registration successful! Redirecting to login...")
-    //         // router.push('/auth/signin')
-    //         // return // stop further execution
-    //     } catch (error: unknown) {
-    //         // attempt local fallback for testing
-    //         try {
-    //             localStorage.setItem('registered_user', JSON.stringify(formData))
-    //             setMessage("Saved registration locally for testing. Redirecting to login...")
-    //             router.push('/auth/signin')
-    //             return
-    //         } catch {
-    //             // if localStorage fails, show readable API/error message
-    //             const userMessage = parseError(error)
-    //             setMessage(userMessage)
-    //         }
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // }
+  };
 
 
     return (

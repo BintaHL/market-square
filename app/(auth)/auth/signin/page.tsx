@@ -7,28 +7,12 @@ import { useState } from "react";
 
 
 interface LoginData {
-  email: string;
   username: string;
   password: string;
 }
 
-// helper to convert unknown errors into user-friendly messages TO BE ROMOVED
-// const parseError = (error: unknown): string => {
-//     if (axios.isAxiosError(error)) {
-//         const detail = error.response?.data?.detail;
-
-//         if (typeof detail === "string") return detail;
-//         if (Array.isArray(detail)) return detail.map((item) => item.msg).filter(Boolean).join(", ");
-//         if (typeof error.response?.data?.message === "string") return error.response.data.message;
-//         return "Login failed. Please check your email and password.";
-//     }
-
-//     return "Something went wrong. Please try again.";
-// };
-
 const Signin = () => {
   const [formData, setFormData] = useState<LoginData>({
-    email: "",
     username: "",
     password: "",
   });
@@ -39,7 +23,9 @@ const Signin = () => {
 
   const router = useRouter();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
 
     if (loading) return;
@@ -47,54 +33,29 @@ const Signin = () => {
     setLoading(true);
     setMessage("");
 
-    console.log("Sending this data to backend:", {
-      username: formData.username,
-      password: formData.password,
-    });
-
     try {
-      const apiBase = process.env.NEXT_PUBLIC_API_URL;
-
-      if (!apiBase) {
-        throw new Error("API URL is not configured");
-      }
-
-      console.log("Sending this data to backend:", {
-        username: formData.username,
-        password: formData.password,
-      });
-
       const response = await axios.post(
-        `${apiBase}/auth/login`,
-        new URLSearchParams({
+        "/api/auth/login",
+        {
           username: formData.username,
           password: formData.password,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
         }
       );
 
       console.log("LOGIN RESPONSE:", response.data);
 
       setMessage("Login successful!");
+
       router.push("/");
+      router.refresh();
 
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
-        console.log("STATUS:", error.response?.status);
-
-        console.log(
-          "VALIDATION ERROR:",
-          JSON.stringify(error.response?.data, null, 2)
-        );
-
         const detail = error.response?.data?.detail;
 
         if (typeof detail === "string") {
           setMessage(detail);
+
         } else if (Array.isArray(detail)) {
           setMessage(
             detail
@@ -102,62 +63,27 @@ const Signin = () => {
               .filter(Boolean)
               .join(", ")
           );
+
         } else {
           setMessage(
             error.response?.data?.message ||
             "Login failed. Please check your username and password."
           );
         }
+
       } else if (error instanceof Error) {
         setMessage(error.message);
+
       } else {
-        setMessage("Something went wrong. Please try again.");
+        setMessage(
+          "Something went wrong. Please try again."
+        );
       }
+
     } finally {
       setLoading(false);
     }
-
-    // temporary till url resolved
-    // catch (error: unknown) {
-    //     // attempt local fallback for testing
-    //     try {
-    //         localStorage.setItem('registered_user', JSON.stringify(formData))
-    //         setMessage("Saved registration locally for testing. Redirecting to login...")
-    //         router.push('/')
-    //         return
-    //     } catch {
-    //         // if localStorage fails, show readable API/error message
-    //         const userMessage = parseError(error)
-    //         setMessage(userMessage)
-    //     }
-    //     finally {
-    //         setLoading(false);
-    //     }
-    // // }
-
-    // alternative trial
-    // try {
-    //   const response = await fetch(
-    //     "https://opt-evacuate-abrasive.ngrok-free.dev/auth/login",
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       // ⚠️ Crucial Step: Send exactly what FastAPI expects
-    //       body: JSON.stringify({
-    //         username: formData.username || formData.email, // 👈 If users log in with email, change this to formData.email
-    //         password: formData.password,
-    //       }),
-    //     },
-    // //   );
-
-    //   const data = await response.json();
-    //   console.log(data);
-    // } catch (error) {
-    //   console.error(error);
-    // }
-  }
+  };
 
     return (
       <div className="relative my-10">

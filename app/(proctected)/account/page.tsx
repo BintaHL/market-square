@@ -23,12 +23,6 @@ const ProfileAccount = () => {
                 { label: "My Cancellations", href: "/account/cancellations" },
             ],
         },
-        {
-            title: "My Wishlist",
-            links: [
-                { label: "Check Wishlist", href: "/account/wishlist" },
-            ],
-        },
     ];
 
     return (
