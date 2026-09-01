@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useCart } from "@/app/(public)/context/CartContext";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { Button } from "@/app/global-components/buttonsLayout/Button";
 
 type FakeStoreProduct = {
   id: number;
@@ -41,9 +42,9 @@ export default function AddToCartButton({
   return (
     <div className="flex flex-col gap-4">
       {/* Quantity Selector */}
-      <div className="flex items-center gap-4">
+      <div className="w-full flex items-center gap-4">
         <p className="font-semibold">Quantity:</p>
-        <div className="flex items-center border border-gray-300 rounded">
+        <div className="flex flex-row items-center justify-center border border-gray-300 rounded">
           <button
             onClick={decrease}
             className="px-4 py-2 text-xl font-bold hover:bg-gray-100"
@@ -60,12 +61,20 @@ export default function AddToCartButton({
         </div>
       </div>
 
-      <button
+      <div className="flex gap-4 items-end justify-end">
+        <Button href="/shop"
+        // onClick={handleClick}
+        className="text-white px-6 py-3 rounded hover:bg-red-700 w-full text-nowrap"
+        >
+        Back to shop
+      </Button>
+        <Button
         onClick={handleClick}
-        className="bg-red-600 text-white px-6 py-3 rounded hover:bg-red-700 w-full"
-      >
+        className="text-white px-6 py-3 rounded hover:bg-red-700 w-full"
+        >
         Add To Cart
-      </button>
+        </Button>  
+      </div>
     </div>
   );
 }
