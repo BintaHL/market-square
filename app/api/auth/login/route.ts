@@ -46,7 +46,34 @@ export async function POST(request: Request) {
 
     const apiBase = process.env.API_URL;
 
+    // If API URL isn't configured, allow a safe fallback for local/demo
+    // development: accept demo admin credentials when running
+    // non-production. This lets you log in even when the backend URL
+    // isn't set or live.
     if (!apiBase) {
+      if (process.env.NODE_ENV !== "production") {
+        const username = process.env.DEMO_ADMIN_USERNAME ?? "admin";
+        const password = process.env.DEMO_ADMIN_PASSWORD ?? "admin123";
+
+        if (body.username === username && body.password === password) {
+          await setAuthCookies(
+            DEMO_ADMIN_ACCESS_TOKEN,
+            DEMO_ADMIN_REFRESH_TOKEN
+          );
+
+          return NextResponse.json({
+            success: true,
+            message: "Demo admin login (fallback) successful",
+            user: { role: "admin" },
+          });
+        }
+
+        return NextResponse.json(
+          { message: "API URL is not configured" },
+          { status: 500 }
+        );
+      }
+
       return NextResponse.json(
         { message: "API URL is not configured" },
         { status: 500 }
