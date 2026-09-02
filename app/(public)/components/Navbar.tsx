@@ -3,16 +3,15 @@ import { ChevronDown, Menu, X, XIcon } from 'lucide-react';
 import Link from 'next/link';
 import { Heart } from 'lucide-react';
 import { ShoppingCart } from 'lucide-react';
-// import { Search } from 'lucide-react';
-// import { ProfileDropdownCustom } from '../profile/profileDropdown';
 import { useState } from 'react';
 import Search from './Search';
+import { ProfileDropdownCustom } from "../../profile/profileDropdown";
 
 const Navbar = () => {
     const [mobileMenu, setMobileMenu] = useState(false);
   return (
-    <div className='fixed w-full left-0 top-0 z-100'>
-        <div className='z-100 shadow-md bg-white'>
+    <div className='fixed w-full left-0 top-0 z-[100] overflow-visible'>
+        <div className='z-[100] shadow-md bg-white overflow-visible'>
             {/* First part of the nav */}
             <div className='hidden md:block bg-[#000000] py-3 items-center'>
                 <div className=''>
@@ -50,12 +49,11 @@ const Navbar = () => {
                             <div className="flex items-center justify-center mr-40">
                                 <Search />
                             </div>
-                            <div className='justify-end flex gap-4'>
+                            <div className='justify-end flex items-center gap-4'>
                                 <Heart size={20}/>
                                 <ShoppingCart size={20}/>
+                                <ProfileDropdownCustom />
                             </div>
-                            {/* Profile Icon */}
-                            {/* <ProfileDropdownCustom /> */}
                         </div>
                     </div>
                 </div>
@@ -114,12 +112,11 @@ const Navbar = () => {
                                     <Search className="h-5 w-5 text-black" />
                                 </div> */}
                             </div>
-                            <div className='flex justify-between gap-5'>
+                            <div className='flex justify-between items-center gap-5'>
                                 <Heart size={20}/>
                                 <ShoppingCart size={20}/>
+                                <ProfileDropdownCustom />
                             </div>
-                            {/* Profile Icon */}
-                            {/* <ProfileDropdownCustom /> */}
                         </div>
                     </div>
                     {/* Links end */}
