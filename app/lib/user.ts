@@ -1,12 +1,24 @@
 import "server-only";
 
 import { apiFetch } from "./api";
+import { getAccessToken, isDemoAdminAccessToken } from "./auth";
 import type { CurrentUser } from "./types/auth";
 
 
 export async function getCurrentUser(): Promise<
   CurrentUser | null
 > {
+
+  const accessToken = await getAccessToken();
+
+  if (isDemoAdminAccessToken(accessToken)) {
+    return {
+      id: 0,
+      username: process.env.DEMO_ADMIN_USERNAME ?? "admin",
+      email: "admin@example.test",
+      role: "admin",
+    };
+  }
 
   try {
 
