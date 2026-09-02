@@ -65,11 +65,12 @@ const Signup = () => {
     
 
         try {
-            const baseAPI = process.env.NEXT_PUBLIC_API_URL
+            // const baseAPI = process.env.NEXT_PUBLIC_API_URL
             await axios.post(
-                `${baseAPI}/auth/register`, formData, {
+                `https://opt-evacuate-abrasive.ngrok-free.dev/auth/register`, formData, {
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        'ngrok-skip-browser-warning': 'true'
                     }
                 } 
             );
