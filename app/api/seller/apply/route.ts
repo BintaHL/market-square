@@ -25,7 +25,7 @@ export async function POST(
 
 
     const response = await fetch(
-      `${process.env.API_URL}/seller/register`,
+      `${process.env.API_URL}/sellers/register`,
       {
         method: "POST",
 

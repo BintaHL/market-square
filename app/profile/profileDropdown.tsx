@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { Package, Store, User } from "lucide-react"
 import { RxAvatar } from "react-icons/rx"
 import LogoutButton from "@/app/components/auth/auth/LogoutButton"
@@ -22,14 +22,16 @@ interface CurrentUser {
 export function ProfileDropdownCustom() {
   const [isOpen, setIsOpen] = useState(false)
   const [user, setUser] = useState<CurrentUser | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
   const dropdownRef = useRef<HTMLDivElement | null>(null)
-  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     let isMounted = true
 
     async function fetchUser() {
       try {
+        setIsLoading(true)
         const response = await fetch("/api/user/me", { cache: "no-store" })
 
         if (!response.ok) {
@@ -42,6 +44,8 @@ export function ProfileDropdownCustom() {
       } catch (error) {
         console.error("Failed to fetch current user", error)
         if (isMounted) setUser(null)
+      } finally {
+        if (isMounted) setIsLoading(false)
       }
     }
 
@@ -50,7 +54,7 @@ export function ProfileDropdownCustom() {
     return () => {
       isMounted = false
     }
-  }, [])
+  }, [pathname])
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -91,11 +95,14 @@ export function ProfileDropdownCustom() {
           <div className="border-b border-gray-100 px-4 py-3">
             <p className="text-xs uppercase tracking-wide text-gray-500">Signed in as</p>
             <p className="truncate text-sm font-semibold text-gray-900">
-              {user?.username || "Loading..."}
+              {isLoading ? "Loading..." : user?.username ?? "Not signed in"}
             </p>
+            {user?.email && (
+              <p className="truncate text-xs text-gray-500">{user.email}</p>
+            )}
           </div>
 
-          <div className="py-1">
+          {user ? <div className="py-1">
             <Link
               href="/account"
               onClick={closeMenu}
@@ -116,7 +123,7 @@ export function ProfileDropdownCustom() {
 
             {isUserRole && !sellerApplication && (
               <Link
-                href="/seller/register"
+                href="/seller/apply"
                 onClick={closeMenu}
                 className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-50 hover:text-gray-900"
               >
@@ -134,12 +141,12 @@ export function ProfileDropdownCustom() {
 
             {isSellerRole && (
               <Link
-                href="/seller"
+                href="/seller/products/add"
                 onClick={closeMenu}
                 className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-50 hover:text-gray-900"
               >
                 <Store className="h-4 w-4" />
-                Seller Dashboard
+                Add Product
               </Link>
             )}
 
@@ -153,11 +160,17 @@ export function ProfileDropdownCustom() {
                 Admin Dashboard
               </Link>
             )}
-          </div>
+          </div> : (
+            <div className="p-3 text-sm text-gray-600">
+              <Link href="/auth/signin" onClick={closeMenu} className="text-primary hover:underline">
+                Sign in to manage your account
+              </Link>
+            </div>
+          )}
 
-          <div className="border-t border-gray-100 bg-[#f3f4f6] p-1">
+          {user && <div className="border-t border-gray-100 bg-[#f3f4f6] p-1">
             <LogoutButton />
-          </div>
+          </div>}
         </div>
       )}
     </div>

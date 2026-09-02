@@ -25,7 +25,7 @@ export default function ApplySellerPage() {
 
     try {
       const response = await fetch(
-        "/api/sellers/register",
+        "/api/seller/apply",
         {
           method: "POST",
 
