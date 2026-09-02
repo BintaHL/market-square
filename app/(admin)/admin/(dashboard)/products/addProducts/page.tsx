@@ -21,7 +21,11 @@ const formSchema = z.object({
 });
 type FormValues = z.infer<typeof formSchema>;
 
-const AddProducts = () => {
+interface ProductFormProps {
+    backHref: string;
+}
+
+export const ProductForm = ({ backHref }: ProductFormProps) => {
     // const { toast } = toast();
 
       const form = useForm<FormValues>({
@@ -39,7 +43,7 @@ const AddProducts = () => {
             <h2 className="text-[22px] font-bold pb-6">Add New Products</h2>
             <div className="flex items-center gap-3">
                 <div className='flex items-center cursor-pointer'>
-                    <Link href="/admin/products">
+                    <Link href={backHref}>
                     <FaLeftLong className='text-primary inline mr-2' />
                     Back to Home</Link>
                 </div>
@@ -102,5 +106,7 @@ const AddProducts = () => {
     </div>    
   )
 }
+
+const AddProducts = () => <ProductForm backHref="/admin/products" />;
 
 export default AddProducts

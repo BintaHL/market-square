@@ -1,5 +1,21 @@
 import { cookies } from "next/headers";
 
+// Demo authentication is deliberately disabled unless explicitly enabled in
+// a non-production environment. Remove this once the backend is available.
+export const DEMO_ADMIN_ACCESS_TOKEN = "demo-admin-access-token";
+export const DEMO_ADMIN_REFRESH_TOKEN = "demo-admin-refresh-token";
+
+export function isDemoAuthEnabled() {
+  return (
+    process.env.NODE_ENV !== "production" &&
+    process.env.DEMO_AUTH_ENABLED === "true"
+  );
+}
+
+export function isDemoAdminAccessToken(token: string | undefined) {
+  return isDemoAuthEnabled() && token === DEMO_ADMIN_ACCESS_TOKEN;
+}
+
 
 export async function setAuthCookies(
   accessToken: string,

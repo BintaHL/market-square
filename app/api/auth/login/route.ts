@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
-import { setAuthCookies } from "@/app/lib/auth";
+import {
+  DEMO_ADMIN_ACCESS_TOKEN,
+  DEMO_ADMIN_REFRESH_TOKEN,
+  isDemoAuthEnabled,
+  setAuthCookies,
+} from "@/app/lib/auth";
 
 interface LoginRequest {
   username: string;
@@ -15,6 +20,29 @@ interface LoginResponse {
 export async function POST(request: Request) {
   try {
     const body: LoginRequest = await request.json();
+
+    if (isDemoAuthEnabled()) {
+      const username = process.env.DEMO_ADMIN_USERNAME ?? "admin";
+      const password = process.env.DEMO_ADMIN_PASSWORD ?? "admin123";
+
+      if (body.username !== username || body.password !== password) {
+        return NextResponse.json(
+          { message: "Invalid demo admin credentials" },
+          { status: 401 }
+        );
+      }
+
+      await setAuthCookies(
+        DEMO_ADMIN_ACCESS_TOKEN,
+        DEMO_ADMIN_REFRESH_TOKEN
+      );
+
+      return NextResponse.json({
+        success: true,
+        message: "Demo admin login successful",
+        user: { role: "admin" },
+      });
+    }
 
     const apiBase = process.env.API_URL;
 

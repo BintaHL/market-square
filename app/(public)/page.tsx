@@ -1,11 +1,11 @@
-import React from 'react'
+
 import { BeforeFooterData } from '@/data'
 import BeforeFooter from "../(public)/components/BeforeFooter"
 import Hero from "../(public)/components/Hero"
 import Product from "./products/page"
 import CustomCarousel from '../global-components/carousel/Carousel'
 import OurProduct from './products/vendoraProducts/page'
-import CategoryBanner from './products/components/CategoryBanner'
+import CategoryBanner from "./products/components/CategoryBanner"
 
 const Home = () => {
   return (

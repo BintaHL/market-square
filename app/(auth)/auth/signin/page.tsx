@@ -48,7 +48,7 @@ const Signin = () => {
 
       showToast("Login successful!", "success");
 
-      router.push("/");
+      router.push(response.data.user?.role === "admin" ? "/admin" : "/");
       router.refresh();
 
     } catch (error: unknown) {
