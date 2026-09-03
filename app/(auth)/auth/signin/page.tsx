@@ -93,16 +93,11 @@ const Signin = () => {
             <Image
               src="/images/auth2.png"
               alt="Sign Logo"
-              width={500}
-              height={20}
-              className="z-10 min-h-120 py-px md:hidden lg:block"
-            />
-            <Image
-              src="/images/auth2.png"
-              alt="Sign Logo"
-              width={300}
-              height={20}
-              className="z-10 min-h-120 py-px lg:hidden md:block"
+              width={805}
+              height={706}
+              loading="eager"
+              sizes="(max-width: 1023px) 300px, 500px"
+              className="z-10 h-auto w-[300px] py-px lg:w-[500px]"
             />
           </div>
 

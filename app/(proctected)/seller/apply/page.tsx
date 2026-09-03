@@ -1,11 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function ApplySellerPage() {
-  const router = useRouter();
-
   const [businessName, setBusinessName] = useState("");
   const [businessDescription, setBusinessDescription] =
     useState("");
@@ -41,7 +38,16 @@ export default function ApplySellerPage() {
         }
       );
 
-      const data = await response.json();
+      const responseBody = await response.text();
+      let data: { message?: string } = {};
+
+      if (responseBody) {
+        try {
+          data = JSON.parse(responseBody) as { message?: string };
+        } catch {
+          throw new Error("The server returned an invalid response.");
+        }
+      }
 
       if (!response.ok) {
         throw new Error(

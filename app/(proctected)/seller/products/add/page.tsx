@@ -1,5 +1,5 @@
-import { ProductForm } from "@/app/(admin)/admin/(dashboard)/products/addProducts/page";
+import { redirect } from "next/navigation";
 
 export default function SellerAddProductPage() {
-  return <ProductForm backHref="/" />;
+  redirect("/seller/products");
 }
