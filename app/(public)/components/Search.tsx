@@ -73,7 +73,7 @@ const Search = () => {
           onChange={onChange}
           value={value}
           placeholder="Search products..."
-          className="w-60 border-2 bg-green-600 border-gray-400 focus-visible:ring-primary rounded-sm"
+          className="w-60 border-2 border-gray-400 focus-visible:ring-primary rounded-sm"
         />
 
         <SearchIcon className="absolute h-4 w-8 ml-40 text-gray-400 pointer-events-none" />

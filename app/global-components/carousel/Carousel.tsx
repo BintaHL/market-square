@@ -14,7 +14,6 @@ interface ApiCard {
   category: string;
 }
 
-
 export default function CustomCardCarousel() {
   const [cards, setCards] = useState<ApiCard[]>([]);
 

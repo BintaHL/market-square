@@ -35,18 +35,13 @@ export default function CheckoutPage() {
         <div className="max-w-md mx-auto">
           <h1 className="text-3xl font-bold mb-4">Order Placed! 🎉</h1>
           <p className="text-gray-600 mb-6">
-            Thank you. We&apos;ll contact you soon.
+            Order placed successfully!.
             {paymentMethod === "bank" 
-              ? " Please transfer to Account: 123456789 and send proof on WhatsApp." 
-              : " Pay with cash when your order is delivered."} 
+              ? " Thank you for Shopping on Cart" 
+              : " Checkout our other products."} 
           </p>
-          {/* <Button 
-            onClick={() => router.push(/"shop")} 
-            className="bg-black"
-          >
-            Continue Shopping
-          </Button> */}
-          <Button  href="/products" className="">Continue Shopping</Button>
+       
+          <Button href="/products" className="text-nowrap">Continue Shopping</Button>
         </div>
       </div>
     )
@@ -54,7 +49,7 @@ export default function CheckoutPage() {
   return (
     <div className="ml-20 ">
       <div className="mx-auto mt-30">
-        <div className="flex justify-between">
+        <div className="flex items-center justify-between">
           {/* Billing Details*/}
           <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] lg:grid-cols-[2fr_2fr] gap-5 lg:gap-10 items-start">
             <main className="w-full min-w-0 my-10">

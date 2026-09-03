@@ -23,11 +23,11 @@ export default function CartPage() {
 
   if (cart.length === 0) {
     return (
-      <div className="max-w-[80%] mx-auto px-4 py-20 text-center mt-20">
+      <div className="max-w-[80%] mx-auto px-4 text-center mt-20">
         <h1 className="text-3xl font-bold mb-4">CART</h1>
         <p className="text-gray-500 mb-6 ">Your cart is empty</p>
         <Link href="/products">
-          <Button className="bg-red-600 hover:bg-red-700">
+          <Button className="bg-primary hover:bg-primary-hover">
             Return To Shop
           </Button>
         </Link>
@@ -56,7 +56,7 @@ export default function CartPage() {
                 <TableRow key={item.id}>
                   {/* Product: Image and Name */}
                   <TableCell>
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-col items-center gap-4">
                       <Image
                         src={item.image}
                         alt={item.name}
@@ -64,7 +64,7 @@ export default function CartPage() {
                         height={50}
                         className="object-cover rounded"
                       />
-                      <p className="font-medium">{item.name}</p>
+                      <p className="font-medium text-wrap">{item.name}</p>
                     </div>
                   </TableCell>
 
@@ -93,6 +93,7 @@ export default function CartPage() {
 
                   {/* Remove Product Button */}
                   <TableCell> 
+                   
                   <button 
                     onClick={() => {
                       removeFromCart(item.id);
@@ -102,6 +103,7 @@ export default function CartPage() {
                   >
                     <X size={18} />
                   </button> 
+
                   </TableCell>
                 </TableRow>
               ))}
