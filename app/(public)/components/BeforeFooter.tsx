@@ -37,34 +37,7 @@ const BeforeFooter = ({BeforeFooterData = []}:BeforeFooterProps) => {
                 <p className="text-gray-500 text-[10px]">Active and Happy Customers</p>
               </div>
             </div>
-          {/* <Image
-            src="/images/Frame1.png"
-            alt="image"
-            width={100}
-            height={100}
-          />
-
-
-           <Image
-            src="/images/Frame2.png"
-            alt="image"
-            width={100}
-            height={100}
-          />
-
-           <Image
-            src="/images/Frame3.png"
-            alt="image"
-            width={100}
-            height={100}
-          />
-
-           <Image
-            src="/images/Frame4.png"
-            alt="image"
-            width={100}
-            height={100}
-          /> */}
+       
         </div>
         <div className='flex flex-col md:flex-row justify-center items-center gap-10'>
             {BeforeFooterData?.map((item, index ) =>{
