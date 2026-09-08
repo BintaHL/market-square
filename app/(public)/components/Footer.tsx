@@ -71,7 +71,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className='flex justify-center items-center h-10 border-t-2 border-t-mist-600 mt-8 text-gray-500 bg-black'>
-                <p className='text-xs font-light py-2'>&copy; Copyright icbm-project {new Date().getFullYear()}. All right reserved</p>
+                <p className='text-xs font-light py-2'>&copy; Copyright Group 2 icbm-project {new Date().getFullYear()}. All right reserved</p>
             </div>
         </div>     
     </div>
