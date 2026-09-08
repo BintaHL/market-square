@@ -11,6 +11,11 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  const scriptProps =
+    typeof window === "undefined"
+      ? undefined
+      : ({ type: "application/json" } as const);
+
   return (
     <div className="flex h-screen w-full overflow-hidden " suppressHydrationWarning> 
       <ThemeProvider

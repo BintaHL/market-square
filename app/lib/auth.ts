@@ -1,15 +1,13 @@
 import { cookies } from "next/headers";
 
-// Demo authentication is deliberately disabled unless explicitly enabled in
-// a non-production environment. Remove this once the backend is available.
+// Demo authentication is disabled unless it is explicitly enabled. This is
+// intentionally configurable in production so preview/demo deployments can
+// use the documented demo credentials without an API_URL.
 export const DEMO_ADMIN_ACCESS_TOKEN = "demo-admin-access-token";
 export const DEMO_ADMIN_REFRESH_TOKEN = "demo-admin-refresh-token";
 
 export function isDemoAuthEnabled() {
-  return (
-    process.env.NODE_ENV !== "production" &&
-    process.env.DEMO_AUTH_ENABLED === "true"
-  );
+  return process.env.DEMO_AUTH_ENABLED === "true";
 }
 
 export function isDemoAdminAccessToken(token: string | undefined) {
