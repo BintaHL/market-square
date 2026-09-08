@@ -1,50 +1,46 @@
-// "use client"
+"use client";
 import Image from "next/image";
 import React from "react";
 
 const AboutHero = () => {
   return (
-    <div className=" mx-auto">
-      <div className="max-w-[80%] flex ml-45 gap-10 min-h-screen">
-        <div className="w-full flex flex-col md:flex-row justify-end gap-5">
-          <div className="w-1/2 h-137.5 flex items-center">
-            <div className="pl-10">
-              <h1 className="text-4xl font-bold mb-10">Our Story</h1>
-              <div>
-                <p>
-                  Launched in 2015, Vendora-Cart is South Asia&apos;s premier
-                  online shopping <br />
-                  marketplace with an active presence in Bangladesh. Supported{" "}
-                  <br />
-                  by wide range of tailored marketing, data and service
-                  solutions, <br />
-                  Exclusive has 10,500 sallers and 300 brands and serves 3{" "}
-                  <br />
-                  million customers across the region.
-                </p>
-              </div>
-              <div className="mt-5">
-                <p>
-                  Exclusive has more than 1 Million products to offer, growing
-                  at a <br />
-                  very fast pace. Vendora-Cart offers a diverse assotment in
-                  categories <br /> ranging from consumer.
-                </p>
-              </div>
-            </div>
+    <div className="w-full px-4 md:px-8 py-10 max-w-7xl mx-auto min-h-screen flex items-center">
+      <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10 w-full">
+        
+        {/* Text Section */}
+        <div className="w-full md:w-1/2 flex flex-col justify-center">
+          <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center md:text-left">
+            Our Story
+          </h1>
+          <div className="space-y-5 text-base text-gray-700 text-center md:text-left leading-relaxed">
+            <p>
+              Launched in 2015, Vendora-Cart is South Asia&apos;s premier online shopping 
+              marketplace with an active presence in Bangladesh. Supported 
+              by a wide range of tailored marketing, data and service solutions, 
+              Exclusive has 10,500 sellers and 300 brands and serves 3 
+              million customers across the region.
+            </p>
+            <p>
+              Exclusive has more than 1 Million products to offer, growing at a 
+              very fast pace. Vendora-Cart offers a diverse assortment in categories 
+              ranging from consumer.
+            </p>
           </div>
-          <div className="">
-            <Image
-              src="/images/about-portrait.png"
-              alt="about-portrait"
-              width={700}
-              height={250}
+        </div>
+
+        {/* Image Section */}
+        <div className="w-full md:w-1/2 flex justify-center">
+          <div className="relative w-full max-w-150 md:max-w-none aspect-[700/600]">
+            <Image 
+              src="/images/about-portrait.png" 
+              alt="about-portrait" 
+              fill
+              className="object-contain rounded-lg"
+              priority
             />
           </div>
-
-         
         </div>
-        
+
       </div>
     </div>
   );
