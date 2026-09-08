@@ -16,7 +16,8 @@ interface CurrentUser {
   seller_application?: {
     id: number
     business_name: string
-    is_approved: boolean
+    is_approved?: boolean
+    status?: "pending" | "approved" | "rejected"
   } | null
 }
 
@@ -74,6 +75,7 @@ export function ProfileDropdownCustom() {
   const closeMenu = () => setIsOpen(false)
 
   const sellerApplication = user?.seller_application
+  const applicationStatus = sellerApplication?.status ?? (sellerApplication?.is_approved ? "approved" : "pending")
   const isSellerRole = user?.role === "seller"
   const isAdminRole = user?.role === "admin"
   const isUserRole = user?.role === "user"
@@ -133,16 +135,27 @@ export function ProfileDropdownCustom() {
               </Link>
             )}
 
-            {isUserRole && sellerApplication && !sellerApplication.is_approved && (
+            {isUserRole && sellerApplication && applicationStatus === "pending" && (
               <div className="flex items-center gap-2 px-4 py-2 text-sm text-yellow-700">
                 <Store className="h-4 w-4" />
                 Application Pending
               </div>
             )}
 
+            {isUserRole && sellerApplication && applicationStatus === "rejected" && (
+              <Link
+                href="/seller/apply"
+                onClick={closeMenu}
+                className="flex items-center gap-2 px-4 py-2 text-sm text-red-700 transition hover:bg-gray-50"
+              >
+                <Store className="h-4 w-4" />
+                Application Rejected — Reapply
+              </Link>
+            )}
+
             {isSellerRole && (
               <Link
-                href="/seller/products/add"
+                href="/seller/products"
                 onClick={closeMenu}
                 className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-50 hover:text-gray-900"
               >
